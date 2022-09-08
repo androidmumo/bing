@@ -8,6 +8,10 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Counter: typeof import('./../../src/components/counter.vue')['default']
+    H5Header: typeof import('./../../src/components/h5Header.vue')['default']
+    Header: typeof import('./../../src/components/header.vue')['default']
+    Image: typeof import('./../../src/components/image.vue')['default']
+    ImageList: typeof import('./../../src/components/imageList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

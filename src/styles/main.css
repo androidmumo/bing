@@ -5,6 +5,9 @@ body,
 #app {
 	margin: 0;
 	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 html.dark {
@@ -35,7 +38,7 @@ html.dark {
 /*
 * 全局滚动条
 */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
 	width: 11px;
 	height: 11px;
 	background-color: rgb(246, 247, 248);
@@ -58,4 +61,4 @@ html.dark ::-webkit-scrollbar-track {
 
 html.dark ::-webkit-scrollbar-thumb {
 	background-color: #343a40;
-}
+} */

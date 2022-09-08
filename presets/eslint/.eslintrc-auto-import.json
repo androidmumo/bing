@@ -173,6 +173,7 @@
     "useI18n": true,
     "useIdle": true,
     "useImage": true,
+    "useImageStore": true,
     "useInfiniteScroll": true,
     "useIntersectionObserver": true,
     "useInterval": true,
