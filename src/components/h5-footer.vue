@@ -29,7 +29,8 @@
 <style scoped lang="scss">
 .h5-footer {
 	width: 100%;
-	padding: 10px 16px;
+	padding: 20px 16px;
+	margin-top: 30px;
 	background-color: #f5f5f5;
 	font-size: 12px;
 	.link {
