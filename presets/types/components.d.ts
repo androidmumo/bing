@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     'ICarbon:awake': typeof import('~icons/carbon/awake')['default']
     'IIon:languageOutline': typeof import('~icons/ion/language-outline')['default']
     ImageList: typeof import('./../../src/components/image-list.vue')['default']
+    'IMdi:github': typeof import('~icons/mdi/github')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -7,7 +7,7 @@ export default defineStore('useImageStore', () => {
 	const getListService = (args: { data?: Data; dataList?: Data['list'] }) => {
 		const { dataList } = args || {}
 		const params = {
-			pageSize: 1,
+			pageSize: 3,
 			currentPage: 1,
 		}
 		if (dataList?.length !== undefined) {
