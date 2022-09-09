@@ -5,7 +5,9 @@
 		<div class="link">
 			<a class="link-item" href="https://www.mcloc.cn">小马奔腾的主页</a>
 			<a class="link-item" href="https://blog.mcloc.cn">小马奔腾的博客</a>
-			<i-mdi:github class="link-item" />
+			<a class="link-item" href="https://github.com/androidmumo/bing">
+				<i-mdi:github />
+			</a>
 		</div>
 		<div class="copyright">Copyright © 2022 mcloc.cn</div>
 		<div class="beian">
@@ -39,6 +41,8 @@
 		margin-bottom: 20px;
 		.link-item {
 			margin-right: 10px;
+			display: flex;
+			align-items: center;
 		}
 	}
 	.copyright {
