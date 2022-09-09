@@ -1,7 +1,30 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const imageStore = useImageStore()
+const { t } = useLanguage()
+</script>
 
 <template>
-	<imageList />
+	<div class="h5-content">
+		<div v-if="imageStore.refreshing" class="is-refreshing-text">
+			{{ t('notice.refreshing') }}
+		</div>
+		<imageList :show-info-text="false" />
+		<div
+			v-if="!imageStore.loadingMore && !imageStore.noMore"
+			class="load-more-btn"
+			@click="imageStore.loadMore"
+		>
+			{{ t('notice.more') }}
+		</div>
+		<div v-if="imageStore.loadingMore" class="is-loading-more-text">
+			{{ t('notice.loadingMore') }}
+		</div>
+		<div v-if="imageStore.noMore" class="is-no-more-text">
+			{{ t('notice.noMore') }}
+		</div>
+	</div>
 </template>
 
-<style></style>
+<style lang="scss">
+@import '../../styles/h5/index.scss';
+</style>

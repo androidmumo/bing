@@ -1,13 +1,17 @@
 import { init } from 'ityped'
 
-export default (strings: string[]) => {
+export default (
+	strings: string[],
+	showCursor?: boolean,
+	disableBackTyping?: boolean
+) => {
 	const typedRef = ref<Element>()
 
 	onMounted(() => {
 		init(typedRef.value!, {
 			strings,
-			showCursor: false,
-			disableBackTyping: true,
+			showCursor,
+			disableBackTyping,
 		})
 	})
 	return typedRef

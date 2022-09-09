@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const typedRef = useTyped(['is not found!'])
+const typedRef = useTyped([' is not found!'])
 
 const router = useRouter()
 

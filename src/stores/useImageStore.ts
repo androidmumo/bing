@@ -1,34 +1,9 @@
 import { defineStore } from 'pinia'
 import { getList } from '../api'
 import { useLoadMore } from 'vue-request'
+import Data from '../types/imageStore'
 
 export default defineStore('useImageStore', () => {
-	type Data = {
-		list: {
-			id: number
-			title: string
-			timestamp: string
-			date: string
-			base64: string
-			url: {
-				hd: string
-				uhd: string
-				thumbnail: string
-				greyscale: string
-				gaussian: string
-			}
-			color: {
-				Muted: string
-				Vibrant: string
-				LightMuted: string
-				LightVibrant: string
-				DarkMuted: string
-				DarkVibrant: string
-			}
-		}[]
-		totle: number
-	}
-
 	const getListService = (args: { data?: Data; dataList?: Data['list'] }) => {
 		const { dataList } = args || {}
 		const params = {

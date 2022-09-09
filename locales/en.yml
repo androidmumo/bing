@@ -7,3 +7,13 @@ not-found: Notfound
 nesting:
   sir: man
   lady: lady
+
+header: {
+  title: Bing Photo
+}
+
+notice:
+  refreshing: Refreshing
+  noMore: No more
+  loadingMore: Loading more
+  more: More
