@@ -58,9 +58,9 @@ const clickWake = () => {
 		</div>
 		<div class="header-center"></div>
 		<div class="header-right">
-			<div class="lang-btn">
+			<div class="lang-btn" @click="toggleLocale()">
 				<span class="text">{{ language }}</span>
-				<i-ion:language-outline class="icon" @click="toggleLocale()" />
+				<i-ion:language-outline class="icon" />
 			</div>
 			<div class="dark-btn">
 				<i-carbon:asleep
@@ -147,24 +147,25 @@ const clickWake = () => {
 		align-items: center;
 		margin-right: 16px;
 		.lang-btn {
-			margin-right: 10px;
+			margin-right: calc(20px + 1.2em);
 			display: flex;
 			align-items: center;
+			transition: transform 0.2s cubic-bezier(0.08, 0.63, 0.48, 0.95);
+			transform: scale(1);
 			.text {
 				font-size: 12px;
 				zoom: 50%;
 				margin-right: 6px;
 			}
+			&:active {
+				transform: scale(0.6);
+			}
 		}
 		.dark-btn {
-			width: 14px;
-			height: 14px;
-			position: relative;
-			display: flex;
-			justify-content: center;
-			align-items: center;
 			.icon {
 				position: absolute;
+				top: calc(50% - 1.2em / 2);
+				right: 16px;
 			}
 		}
 	}
