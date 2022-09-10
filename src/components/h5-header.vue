@@ -109,12 +109,12 @@ const clickWake = () => {
 
 .dark-leave {
 	animation-name: darkLeave;
-	animation-duration: 0.5s;
+	animation-duration: 0.52s;
 }
 
 .dark-enter {
 	animation-name: darkEnter;
-	animation-duration: 0.5s;
+	animation-duration: 0.52s;
 }
 
 .h5-header {
@@ -164,7 +164,7 @@ const clickWake = () => {
 		.dark-btn {
 			.icon {
 				position: absolute;
-				top: calc(50% - 1.2em / 2);
+				top: calc(50% - 8px);
 				right: 16px;
 			}
 		}
