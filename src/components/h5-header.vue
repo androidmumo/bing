@@ -5,8 +5,9 @@ const { t, toggleLocale, language } = useLanguage()
 const state = reactive({
 	showSleep: false,
 	showWake: false,
-	animation: false,
-	disableClickDark: false,
+	darkAnimation: false, // 允许dark按钮动画
+	disableClickDark: false, // 禁止切换dark
+	langAnimation: false, // 允许语言切换按钮动画
 })
 
 // 初始化显示状态
@@ -17,7 +18,7 @@ state.showWake = !!isDark.value
 const clickSleep = () => {
 	if (state.disableClickDark) return
 	state.disableClickDark = true
-	state.animation = true
+	state.darkAnimation = true
 	toggleDark(true)
 	setTimeout(() => {
 		state.showWake = true
@@ -26,7 +27,7 @@ const clickSleep = () => {
 		state.showSleep = false
 	}, 500)
 	setTimeout(() => {
-		state.animation = false
+		state.darkAnimation = false
 		state.disableClickDark = false
 	}, 600)
 }
@@ -35,7 +36,7 @@ const clickSleep = () => {
 const clickWake = () => {
 	if (state.disableClickDark) return
 	state.disableClickDark = true
-	state.animation = true
+	state.darkAnimation = true
 	toggleDark(false)
 	setTimeout(() => {
 		state.showSleep = true
@@ -44,9 +45,18 @@ const clickWake = () => {
 		state.showWake = false
 	}, 500)
 	setTimeout(() => {
-		state.animation = false
+		state.darkAnimation = false
 		state.disableClickDark = false
 	}, 600)
+}
+
+// 点击语言切换按钮
+const clickLang = () => {
+	state.langAnimation = true
+	toggleLocale()
+	setTimeout(() => {
+		state.langAnimation = false
+	}, 100)
 }
 </script>
 
@@ -58,7 +68,13 @@ const clickWake = () => {
 		</div>
 		<div class="header-center"></div>
 		<div class="header-right">
-			<div class="lang-btn" @click="toggleLocale()">
+			<div
+				:class="{
+					'lang-btn': true,
+					'lang-click': state.langAnimation,
+				}"
+				@click="clickLang"
+			>
 				<span class="text">{{ language }}</span>
 				<i-ion:language-outline class="icon" />
 			</div>
@@ -67,8 +83,8 @@ const clickWake = () => {
 					v-if="state.showSleep"
 					:class="{
 						icon: true,
-						'dark-leave': state.animation && isDark,
-						'dark-enter': state.animation && !isDark,
+						'dark-leave': state.darkAnimation && isDark,
+						'dark-enter': state.darkAnimation && !isDark,
 					}"
 					@click="clickSleep"
 				/>
@@ -76,8 +92,8 @@ const clickWake = () => {
 					v-if="state.showWake"
 					:class="{
 						icon: true,
-						'dark-leave': state.animation && !isDark,
-						'dark-enter': state.animation && isDark,
+						'dark-leave': state.darkAnimation && !isDark,
+						'dark-enter': state.darkAnimation && isDark,
 					}"
 					@click="clickWake"
 				/>
@@ -157,9 +173,9 @@ const clickWake = () => {
 				zoom: 50%;
 				margin-right: 6px;
 			}
-			&:active {
-				transform: scale(0.6);
-			}
+		}
+		.lang-click {
+			transform: scale(0.6);
 		}
 		.dark-btn {
 			.icon {
