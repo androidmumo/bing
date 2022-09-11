@@ -2,6 +2,7 @@
 const imageStore = useImageStore()
 const { t } = useLanguage()
 const router = useRouter()
+console.log(301)
 
 const previewImage = (imageInfo: any) => {
 	router.push(`/pc/detail?id=${imageInfo.id}`)
@@ -30,3 +31,8 @@ const previewImage = (imageInfo: any) => {
 <style lang="scss">
 @import '../../styles/pc/index.scss';
 </style>
+
+<route lang="yaml">
+meta:
+  keepAlive: true
+</route>

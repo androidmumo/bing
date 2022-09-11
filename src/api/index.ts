@@ -14,4 +14,14 @@ const getList = (params: {
 	}).then((response) => response.data)
 }
 
-export { getList }
+const getInfo = (params: { id: number }) => {
+	return http({
+		method: 'get',
+		url: '/bing/getInfo',
+		params: {
+			id: params.id,
+		},
+	}).then((response) => response.data.info)
+}
+
+export { getList, getInfo }

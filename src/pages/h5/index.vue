@@ -28,3 +28,8 @@ const { t } = useLanguage()
 <style lang="scss">
 @import '../../styles/h5/index.scss';
 </style>
+
+<route lang="yaml">
+meta:
+  keepAlive: true
+</route>

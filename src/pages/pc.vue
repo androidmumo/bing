@@ -1,7 +1,11 @@
 <template>
 	<div class="pc">
 		<pcHeader />
-		<router-view />
+		<router-view v-slot="{ Component }">
+			<keep-alive>
+				<component :is="Component"></component>
+			</keep-alive>
+		</router-view>
 		<pcFooter />
 	</div>
 </template>
@@ -39,4 +43,5 @@ html.dark ::-webkit-scrollbar-thumb {
 <route lang="yaml">
 meta:
   agent: pc
+  keepAlive: true
 </route>
