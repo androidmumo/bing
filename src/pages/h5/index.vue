@@ -1,14 +1,19 @@
 <script setup lang="ts">
 const imageStore = useImageStore()
 const { t } = useLanguage()
+const router = useRouter()
+
+const clickImage = (imageInfo: any) => {
+	router.push(`/h5/detail?id=${imageInfo.id}`)
+}
 </script>
 
 <template>
-	<div class="h5-content">
+	<div class="h5-index">
 		<div v-if="imageStore.refreshing" class="is-refreshing-text">
 			{{ t('notice.refreshing') }}
 		</div>
-		<imageList :show-info-text="false" />
+		<imageList :show-info-text="false" @click-image="clickImage" />
 		<div
 			v-if="!imageStore.loadingMore && !imageStore.noMore"
 			class="load-more-btn"
@@ -25,7 +30,7 @@ const { t } = useLanguage()
 	</div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import '../../styles/h5/index.scss';
 </style>
 

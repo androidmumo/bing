@@ -2,16 +2,15 @@
 const imageStore = useImageStore()
 const { t } = useLanguage()
 const router = useRouter()
-console.log(301)
 
-const previewImage = (imageInfo: any) => {
+const clickImage = (imageInfo: any) => {
 	router.push(`/pc/detail?id=${imageInfo.id}`)
 }
 </script>
 
 <template>
-	<div class="pc-content">
-		<imageList :show-info-text="false" @preview-image="previewImage" />
+	<div class="pc-index">
+		<imageList :show-info-text="false" @click-image="clickImage" />
 		<div
 			v-if="!imageStore.loadingMore && !imageStore.noMore"
 			class="load-more-btn"
@@ -28,7 +27,7 @@ const previewImage = (imageInfo: any) => {
 	</div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import '../../styles/pc/index.scss';
 </style>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const imageStore = useImageStore()
-const emit = defineEmits(['preview-image'])
+const emit = defineEmits(['click-image'])
 
 interface Props {
 	showInfoText?: boolean
@@ -9,8 +9,8 @@ const props = withDefaults(defineProps<Props>(), {
 	showInfoText: true,
 })
 
-const previewImage = (item: any) => {
-	emit('preview-image', item)
+const clickImage = (item: any) => {
+	emit('click-image', item)
 }
 </script>
 
@@ -27,7 +27,7 @@ const previewImage = (item: any) => {
 				v-preview="item?.base64"
 				v-origin="item?.url.hd"
 				class="image"
-				@click="previewImage(item)"
+				@click="clickImage(item)"
 			></div>
 			<div class="title">
 				{{ item?.title }}

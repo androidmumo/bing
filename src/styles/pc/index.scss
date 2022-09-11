@@ -1,77 +1,67 @@
-.pc {
+.pc-index {
 	width: 100%;
-	height: 100%;
-	overflow-x: hidden;
-	overflow-y: scroll;
+	padding-top: 60px;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 
-	.pc-content {
-		flex: 1;
+	.image-list {
 		width: 100%;
-		padding-top: 60px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		.image-list {
-			width: 100%;
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			grid-row-gap: 20px;
-			grid-column-gap: 20px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-row-gap: 20px;
+		grid-column-gap: 20px;
 
 
-			.image-item {
-				.image {
-					width: 100%;
-				}
-
-				.title {
-					font-size: 16px;
-				}
+		.image-item {
+			.image {
+				width: 100%;
 			}
 
-			.info-text {
-				font-size: 12px;
-				zoom: 80%;
-				text-align: center;
+			.title {
+				font-size: 16px;
 			}
 		}
 
-		.load-more-btn {
-			margin: 10px 0;
-			width: 120px;
-			height: 39px;
-			line-height: 39px;
-			text-align: center;
-			font-size: 16px;
-			color: #ffffff;
-			background-color: #603dc1cc;
-			border-radius: 10px;
-			cursor: pointer;
-		}
-
-		.is-loading-more-text {
-			margin: 10px 0;
-			text-align: center;
+		.info-text {
 			font-size: 12px;
-			line-height: 39px;
-			color: #999999;
-		}
-
-		.is-no-more-text {
-			margin: 10px 0;
+			zoom: 80%;
 			text-align: center;
-			font-size: 12px;
-			line-height: 39px;
-			color: #999999;
 		}
+	}
+
+	.load-more-btn {
+		margin: 10px 0;
+		width: 120px;
+		height: 39px;
+		line-height: 39px;
+		text-align: center;
+		font-size: 16px;
+		color: #ffffff;
+		background-color: #603dc1cc;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+
+	.is-loading-more-text {
+		margin: 10px 0;
+		text-align: center;
+		font-size: 12px;
+		line-height: 39px;
+		color: #999999;
+	}
+
+	.is-no-more-text {
+		margin: 10px 0;
+		text-align: center;
+		font-size: 12px;
+		line-height: 39px;
+		color: #999999;
 	}
 }
 
-html.dark .pc {
-	.pc-content {
+html.dark {
+	.pc-index {
 		.load-more-btn {
 			color: #000;
 			background-color: #858AE3cc;

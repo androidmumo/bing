@@ -4,7 +4,6 @@ import { useLoadMore } from 'vue-request'
 import Data from '../types/imageStore'
 
 export default defineStore('useImageStore', () => {
-	console.log(201)
 	// 根据路由决定每页加载几个
 	const route = useRoute()
 	const agent = <string>route.meta.agent || ''
