@@ -4,10 +4,26 @@ import { useLoadMore } from 'vue-request'
 import Data from '../types/imageStore'
 
 export default defineStore('useImageStore', () => {
+	// 根据路由决定每页加载几个
+	const route = useRoute()
+	const agent = <string>route.meta.agent || ''
+	let pageSize: number = 3
+	switch (agent) {
+		case 'pc':
+			pageSize = 5
+			break
+		case 'h5':
+			pageSize = 3
+			break
+		default:
+			break
+	}
+
+	// service
 	const getListService = (args: { data?: Data; dataList?: Data['list'] }) => {
 		const { dataList } = args || {}
 		const params = {
-			pageSize: 3,
+			pageSize,
 			currentPage: 1,
 		}
 		if (dataList?.length !== undefined) {
@@ -25,5 +41,13 @@ export default defineStore('useImageStore', () => {
 
 	const noMore = computed(() => dataList.value.length === data.value?.totle)
 
-	return { data, dataList, loadingMore, refreshing, noMore, loadMore, refresh }
+	return {
+		data,
+		dataList,
+		loadingMore,
+		refreshing,
+		noMore,
+		loadMore,
+		refresh,
+	}
 })

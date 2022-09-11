@@ -38,6 +38,7 @@ declare module 'vue-router/auto/routes' {
     '/h5/': RouteRecordInfo<'/h5/', '/h5/', Record<never, never>, Record<never, never>>,
     '/pc': RouteRecordInfo<'/pc', '/pc', Record<never, never>, Record<never, never>>,
     '/pc/': RouteRecordInfo<'/pc/', '/pc/', Record<never, never>, Record<never, never>>,
+    '/pc/detail': RouteRecordInfo<'/pc/detail', '/pc/detail', Record<never, never>, Record<never, never>>,
   }
 }
 

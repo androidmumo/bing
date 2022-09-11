@@ -35,3 +35,8 @@ html.dark ::-webkit-scrollbar-thumb {
 	background-color: #343a40;
 }
 </style>
+
+<route lang="yaml">
+meta:
+  agent: pc
+</route>

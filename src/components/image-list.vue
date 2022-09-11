@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const imageStore = useImageStore()
+const emit = defineEmits(['preview-image'])
 
 interface Props {
 	showInfoText?: boolean
@@ -9,7 +10,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const previewImage = (item: any) => {
-	console.log('previewImage', item)
+	emit('preview-image', item)
 }
 </script>
 

@@ -5,3 +5,8 @@
 		<h5Footer />
 	</div>
 </template>
+
+<route lang="yaml">
+meta:
+  agent: h5
+</route>

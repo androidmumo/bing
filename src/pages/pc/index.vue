@@ -1,11 +1,16 @@
 <script setup lang="ts">
 const imageStore = useImageStore()
 const { t } = useLanguage()
+const router = useRouter()
+
+const previewImage = (imageInfo: any) => {
+	router.push(`/pc/detail?id=${imageInfo.id}`)
+}
 </script>
 
 <template>
 	<div class="pc-content">
-		<imageList :show-info-text="false" />
+		<imageList :show-info-text="false" @preview-image="previewImage" />
 		<div
 			v-if="!imageStore.loadingMore && !imageStore.noMore"
 			class="load-more-btn"

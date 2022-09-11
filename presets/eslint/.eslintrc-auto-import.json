@@ -12,7 +12,6 @@
     "controlledComputed": true,
     "controlledRef": true,
     "createApp": true,
-    "createCounter": true,
     "createEventHook": true,
     "createGlobalState": true,
     "createInjectionState": true,
