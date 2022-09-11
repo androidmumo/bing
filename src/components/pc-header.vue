@@ -61,7 +61,7 @@ const clickLang = () => {
 </script>
 
 <template>
-	<div class="h5-header">
+	<div class="pc-header">
 		<div class="header-left">
 			<i-bxl:bing class="icon" />
 			<span class="title">{{ t('header.title') }}</span>
@@ -103,7 +103,7 @@ const clickLang = () => {
 </template>
 
 <style scoped lang="scss">
-$left-right-margin: 16px; // 左右边距
+$left-right-margin: 30px; // 左右边距
 
 @keyframes darkLeave {
 	0% {
@@ -135,12 +135,12 @@ $left-right-margin: 16px; // 左右边距
 	animation-duration: 0.52s;
 }
 
-.h5-header {
+.pc-header {
 	position: fixed;
 	z-index: 1;
 	top: 0;
 	width: 100%;
-	height: 50px;
+	height: 60px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -191,7 +191,7 @@ $left-right-margin: 16px; // 左右边距
 	}
 }
 
-html.dark .h5-header {
+html.dark .pc-header {
 	background-color: rgba(0, 0, 0, 0.72);
 }
 </style>

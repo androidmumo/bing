@@ -16,6 +16,8 @@ declare module '@vue/runtime-core' {
     'IIon:languageOutline': typeof import('~icons/ion/language-outline')['default']
     ImageList: typeof import('./../../src/components/image-list.vue')['default']
     'IMdi:github': typeof import('~icons/mdi/github')['default']
+    PcFooter: typeof import('./../../src/components/pc-footer.vue')['default']
+    PcHeader: typeof import('./../../src/components/pc-header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
