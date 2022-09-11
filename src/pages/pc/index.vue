@@ -1,8 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const imageStore = useImageStore()
+const { t } = useLanguage()
+</script>
 
 <template>
 	<div class="pc-content">
-		<imageList :show-info-text="true" />
+		<imageList :show-info-text="false" />
+		<div
+			v-if="!imageStore.loadingMore && !imageStore.noMore"
+			class="load-more-btn"
+			@click="imageStore.loadMore"
+		>
+			{{ t('notice.more') }}
+		</div>
+		<div v-if="imageStore.loadingMore" class="is-loading-more-text">
+			{{ t('notice.loadingMore') }}
+		</div>
+		<div v-if="imageStore.noMore" class="is-no-more-text">
+			{{ t('notice.noMore') }}
+		</div>
 	</div>
 </template>
 

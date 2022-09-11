@@ -16,6 +16,10 @@
 
 		.image-list {
 			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-row-gap: 20px;
+			grid-column-gap: 20px;
 
 
 			.image-item {
@@ -34,7 +38,42 @@
 				text-align: center;
 			}
 		}
+
+		.load-more-btn {
+			margin: 10px 0;
+			width: 120px;
+			height: 39px;
+			line-height: 39px;
+			text-align: center;
+			font-size: 16px;
+			color: #ffffff;
+			background-color: #603dc1cc;
+			border-radius: 10px;
+		}
+
+		.is-loading-more-text {
+			margin: 10px 0;
+			text-align: center;
+			font-size: 12px;
+			line-height: 39px;
+			color: #999999;
+		}
+
+		.is-no-more-text {
+			margin: 10px 0;
+			text-align: center;
+			font-size: 12px;
+			line-height: 39px;
+			color: #999999;
+		}
 	}
 }
 
-html.dark .pc {}
+html.dark .pc {
+	.pc-content {
+		.load-more-btn {
+			color: #000;
+			background-color: #858AE3cc;
+		}
+	}
+}
