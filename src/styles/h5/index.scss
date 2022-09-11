@@ -3,8 +3,11 @@
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
 
 	.h5-content {
+		flex: 1;
 		width: 100%;
 		padding-top: 50px;
 		display: flex;
@@ -42,6 +45,7 @@
 			background-color: #603dc1cc;
 			border-radius: 10px;
 		}
+
 		.is-loading-more-text {
 			margin: 10px 0;
 			text-align: center;
@@ -49,6 +53,7 @@
 			line-height: 39px;
 			color: #999999;
 		}
+
 		.is-no-more-text {
 			margin: 10px 0;
 			text-align: center;
