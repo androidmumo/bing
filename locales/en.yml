@@ -1,19 +1,22 @@
 # English
 
-index: index
-about: about
-not-found: Notfound
-
 nesting:
   sir: man
   lady: lady
 
-header: {
+header:
   title: Bing Photo of the Day
-}
 
 notice:
   refreshing: Refreshing
   noMore: No more
   loadingMore: Loading more
   more: More
+  loading: Loading
+
+index:
+  today: Today
+
+detail:
+  greyscale: greyscale
+  gaussian: gaussian

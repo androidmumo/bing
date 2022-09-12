@@ -1,9 +1,5 @@
 # 中文
 
-index: 主页
-about: 关于
-not-found: 未找到页面
-
 nesting:
   sir: 男人
   lady: 女士
@@ -16,3 +12,11 @@ notice:
   noMore: 没有更多了
   loadingMore: 正在加载更多
   more: 再来点图
+  loading: 正在加载
+
+index:
+  today: 今天
+
+detail:
+  greyscale: 灰度
+  gaussian: 高斯模糊

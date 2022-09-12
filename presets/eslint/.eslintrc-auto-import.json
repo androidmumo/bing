@@ -169,6 +169,7 @@
     "useFullscreen": true,
     "useGamepad": true,
     "useGeolocation": true,
+    "useHeaderStore": true,
     "useI18n": true,
     "useIdle": true,
     "useImage": true,

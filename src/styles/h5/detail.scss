@@ -1,8 +1,84 @@
 .h5-detail {
 	padding-top: 50px;
+
 	.detail-image {
 		.image {
 			width: 100%;
+		}
+
+		.image-content {
+			width: 100%;
+			padding: 20px 0;
+			display: flex;
+
+			.color {
+				display: flex;
+				flex-direction: column;
+				border-radius: 4px;
+				overflow: hidden;
+				margin: 0 16px 0 16px;
+
+				.color-item {
+					flex: 1;
+					width: 32px;
+				}
+			}
+
+			.container {
+				margin-right: 16px;
+
+				.date {
+					font-size: 32px;
+					font-weight: bold;
+					display: inline-block;
+					padding-right: 8px;
+					border-bottom: 3px solid #603dc1cc;
+					margin-bottom: 16px;
+				}
+
+				.title {
+					font-size: 16px;
+				}
+			}
+		}
+	}
+
+	.gaussian-image,
+	.greyscale-image {
+		padding: 0 16px;
+		margin-bottom: 16px;
+
+		.title {
+			display: inline-block;
+			font-size: 16px;
+			padding-right: 8px;
+			border-bottom: 3px solid #603dc1cc;
+			margin-bottom: 8px;
+		}
+
+		.image {
+			width: 100%;
+		}
+	}
+}
+
+html.dark {
+	.h5-detail {
+		.detail-image {
+			.image-content {
+				.container {
+					.date {
+						border-bottom: 3px solid #858AE3cc;
+					}
+				}
+			}
+		}
+
+		.gaussian-image,
+		.greyscale-image {
+			.title {
+				border-bottom: 3px solid #858AE3cc;
+			}
 		}
 	}
 }

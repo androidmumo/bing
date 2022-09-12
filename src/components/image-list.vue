@@ -22,16 +22,18 @@ const clickImage = (item: any) => {
 		>
 			正在刷新
 		</div>
-		<div v-for="item in imageStore.dataList" :key="item?.id" class="image-item">
+		<div
+			v-for="item in imageStore.dataList"
+			:key="item?.id"
+			class="image-item"
+			@click="clickImage(item)"
+		>
 			<div
 				v-preview="item?.base64"
-				v-origin="item?.url.hd"
+				v-origin="item?.url.thumbnail"
 				class="image"
-				@click="clickImage(item)"
 			></div>
-			<div class="title">
-				{{ item?.title }}
-			</div>
+			<slot name="content" :data="item"></slot>
 		</div>
 		<div
 			v-if="props.showInfoText && imageStore.loadingMore"

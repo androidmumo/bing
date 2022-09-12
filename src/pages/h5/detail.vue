@@ -4,6 +4,8 @@ import { UnwrapNestedRefs } from 'vue'
 
 const route = useRoute()
 const imageStore = useImageStore()
+const headerStore = useHeaderStore()
+const { t } = useLanguage()
 
 const state = reactive({
 	data: {},
@@ -14,6 +16,7 @@ const state = reactive({
 const loadData = () => {
 	const id = Number(route.query.id)
 	state.data = imageStore.dataList.filter((item) => item.id === id)[0] || {}
+	headerStore.setBackBtnStatus(true)
 	if (state.data.id !== id) {
 		// store中不存在这张图片的数据，需要请求接口
 		state.loading = true
@@ -21,6 +24,7 @@ const loadData = () => {
 			state.data = res
 			state.loading = false
 		})
+		headerStore.setBackBtnStatus(false)
 	}
 }
 
@@ -37,21 +41,55 @@ watch(
 </script>
 
 <template>
-	<div class="h5-detail">
-		<div v-if="!state.loading" :key="state.data.id" class="detail-image">
+	<div v-if="state.loading" class="loading">
+		{{ t('notice.loading') }}
+	</div>
+	<div v-if="!state.loading" :key="state.data.id" class="h5-detail">
+		<div class="detail-image">
 			<div
 				v-preview="state.data?.base64"
 				v-origin="state.data?.url?.hd"
 				class="image"
 			></div>
-			<div class="title">
-				{{ state.data?.title }}
+			<div class="image-content">
+				<div class="color">
+					<div
+						v-for="colorKey in Object.keys(state.data.color)"
+						:key="colorKey"
+						:class="{ 'color-item': true, [colorKey]: true }"
+						:style="{ 'background-color': state.data.color[colorKey] }"
+					></div>
+				</div>
+				<div class="container">
+					<div class="date">
+						{{ state.data?.date }}
+					</div>
+					<div class="title">
+						{{ state.data?.title }}
+					</div>
+				</div>
 			</div>
+		</div>
+		<div class="greyscale-image">
+			<div class="title">{{ t('detail.greyscale') }}</div>
+			<div
+				v-preview="state.data?.base64"
+				v-origin="state.data?.url?.greyscale"
+				class="image"
+			></div>
+		</div>
+		<div class="gaussian-image">
+			<div class="title">{{ t('detail.gaussian') }}</div>
+			<div
+				v-preview="state.data?.base64"
+				v-origin="state.data?.url?.gaussian"
+				class="image"
+			></div>
 		</div>
 	</div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import url('../../styles/h5/detail.scss');
 </style>
 

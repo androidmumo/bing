@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
+
 const imageStore = useImageStore()
 const { t } = useLanguage()
 const router = useRouter()
+
+const isToday = (date: string) => {
+	return dayjs(date).format('YYYY-MM-DD') === dayjs().format('YYYY-MM-DD')
+}
 
 const clickImage = (imageInfo: any) => {
 	router.push(`/h5/detail?id=${imageInfo.id}`)
@@ -13,7 +19,30 @@ const clickImage = (imageInfo: any) => {
 		<div v-if="imageStore.refreshing" class="is-refreshing-text">
 			{{ t('notice.refreshing') }}
 		</div>
-		<imageList :show-info-text="false" @click-image="clickImage" />
+		<imageList
+			:show-info-text="false"
+			:show-color="true"
+			@click-image="clickImage"
+		>
+			<template #content="{ data }">
+				<div class="image-list-content">
+					<div class="color">
+						<div
+							v-for="colorKey in Object.keys(data.color)"
+							:key="colorKey"
+							:class="{ 'color-item': true, [colorKey]: true }"
+							:style="{ 'background-color': data.color[colorKey] }"
+						></div>
+					</div>
+					<div class="title">
+						<span :class="{ date: true, today: isToday(data?.date) }">
+							{{ isToday(data?.date) ? t('index.today') : data?.date }}
+						</span>
+						{{ data?.title }}
+					</div>
+				</div>
+			</template>
+		</imageList>
 		<div
 			v-if="!imageStore.loadingMore && !imageStore.noMore"
 			class="load-more-btn"
@@ -30,7 +59,7 @@ const clickImage = (imageInfo: any) => {
 	</div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '../../styles/h5/index.scss';
 </style>
 

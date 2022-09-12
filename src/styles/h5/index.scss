@@ -9,12 +9,48 @@
 		width: 100%;
 
 		.image-item {
+			margin-bottom: 10px;
+
 			.image {
 				width: 100%;
 			}
 
-			.title {
-				font-size: 12px;
+			// 插槽
+			.image-list-content {
+				width: 100%;
+				padding: 10px 0;
+
+				.color {
+					margin: 0 16px;
+					display: flex;
+					border-radius: 4px;
+					overflow: hidden;
+
+					.color-item {
+						flex: 1;
+						height: 8px;
+					}
+				}
+
+				.title {
+					font-size: 12px;
+					margin: 8px 16px 0;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+
+					.date {
+						display: inline-block;
+						padding: 2px 8px;
+						color: #ffffff;
+						background-color: #603dc1cc;
+						border-radius: 4px;
+					}
+
+					.today {
+						background-color: #603dc1cc;
+					}
+				}
 			}
 		}
 
@@ -57,6 +93,18 @@
 
 html.dark {
 	.h5-index {
+		.image-list {
+			.image-item {
+				.image-list-content {
+					.title {
+						.date {
+							background-color: #858AE3cc;
+						}
+					}
+				}
+			}
+		}
+
 		.load-more-btn {
 			color: #000;
 			background-color: #858AE3cc;

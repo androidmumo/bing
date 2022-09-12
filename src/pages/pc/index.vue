@@ -27,7 +27,7 @@ const clickImage = (imageInfo: any) => {
 	</div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '../../styles/pc/index.scss';
 </style>
 
