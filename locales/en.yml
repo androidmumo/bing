@@ -18,5 +18,9 @@ index:
   today: Today
 
 detail:
-  greyscale: greyscale
-  gaussian: gaussian
+  greyscale: Greyscale
+  gaussian: Gaussian
+  hd: HD
+  uhd: UHD
+  remark: The above pictures are all original pictures, just press and hold to save
+  overlayer: Click to load UHD image

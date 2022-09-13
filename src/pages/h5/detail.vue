@@ -10,12 +10,13 @@ const { t } = useLanguage()
 const state = reactive({
 	data: {},
 	loading: false,
-	error: false,
+	uhdImageUrl: '',
 }) as UnwrapNestedRefs<any>
 
 const loadData = () => {
 	const id = Number(route.query.id)
 	state.data = imageStore.dataList.filter((item) => item.id === id)[0] || {}
+	state.uhdImageUrl = ''
 	headerStore.setBackBtnStatus(true)
 	if (state.data.id !== id) {
 		// store中不存在这张图片的数据，需要请求接口
@@ -29,6 +30,10 @@ const loadData = () => {
 }
 
 loadData()
+
+const showUHDImage = () => {
+	state.uhdImageUrl = state.data?.url?.uhd
+}
 
 // 监听路由id变化
 watch(
@@ -85,6 +90,31 @@ watch(
 				v-origin="state.data?.url?.gaussian"
 				class="image"
 			></div>
+		</div>
+		<div class="hd-image">
+			<div class="title">{{ t('detail.hd') }}</div>
+			<div
+				v-preview="state.data?.base64"
+				v-origin="state.data?.url?.hd"
+				class="image"
+			></div>
+		</div>
+		<div class="uhd-image">
+			<div class="title">{{ t('detail.uhd') }}</div>
+			<div class="image-wrap">
+				<div
+					:key="state.uhdImageUrl"
+					v-preview="state.data?.base64"
+					v-origin="state.uhdImageUrl"
+					class="image"
+				></div>
+				<div v-if="!state.uhdImageUrl" class="overlayer" @click="showUHDImage">
+					{{ t('detail.overlayer') }}
+				</div>
+			</div>
+		</div>
+		<div class="remark">
+			{{ t('detail.remark') }}
 		</div>
 	</div>
 </template>
