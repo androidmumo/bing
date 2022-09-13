@@ -21,6 +21,11 @@ const back = () => {
 	router.back()
 }
 
+// go home
+const goHome = () => {
+	router.replace('/')
+}
+
 // 点击返回按钮
 const clickBackBtn = () => {
 	headerStore.setBackBtnStatus(false)
@@ -76,8 +81,8 @@ const clickLang = () => {
 <template>
 	<div class="h5-header">
 		<div class="header-left">
-			<i-bxl:bing v-if="!headerStore.needBack" class="icon" />
-			<span v-if="!headerStore.needBack" class="title">{{
+			<i-bxl:bing v-if="!headerStore.needBack" class="icon" @click="goHome" />
+			<span v-if="!headerStore.needBack" class="title" @click="goHome">{{
 				t('header.title')
 			}}</span>
 			<i-ion:ios-arrow-back

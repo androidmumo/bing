@@ -10,10 +10,10 @@ export default defineStore('useImageStore', () => {
 	let pageSize: number = 3
 	switch (agent) {
 		case 'pc':
-			pageSize = 5
+			pageSize = 6
 			break
 		case 'h5':
-			pageSize = 3
+			pageSize = 5
 			break
 		default:
 			break
