@@ -5,63 +5,121 @@
 	flex-direction: column;
 	align-items: center;
 
-	.image-list {
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-row-gap: 20px;
-		grid-column-gap: 20px;
+	.index-content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 90%;
+
+		.image-list {
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-row-gap: 20px;
+			grid-column-gap: 20px;
 
 
-		.image-item {
-			.image {
-				width: 100%;
+			.image-item {
+				overflow: hidden;
+
+				.image {
+					width: 100%;
+				}
+
+				// 插槽
+				.image-list-content {
+					width: 100%;
+					padding: 10px 0;
+
+					.color {
+						margin: 0 16px;
+						display: flex;
+						border-radius: 4px;
+						overflow: hidden;
+
+						.color-item {
+							flex: 1;
+							height: 4px;
+						}
+					}
+
+					.title {
+						width: auto;
+						font-size: 16px;
+						margin: 8px 16px 0;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+
+						.date {
+							display: inline-block;
+							padding: 2px 8px;
+							color: #ffffff;
+							background-color: #603dc1cc;
+							border-radius: 4px;
+						}
+
+						.today {
+							background-color: #603dc1cc;
+						}
+					}
+				}
 			}
 
-			.title {
-				font-size: 16px;
+			.info-text {
+				font-size: 12px;
+				zoom: 80%;
+				text-align: center;
 			}
 		}
 
-		.info-text {
-			font-size: 12px;
-			zoom: 80%;
+		.load-more-btn {
+			margin: 10px 0;
+			width: 120px;
+			height: 39px;
+			line-height: 39px;
 			text-align: center;
+			font-size: 16px;
+			color: #ffffff;
+			background-color: #603dc1cc;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+
+		.is-loading-more-text {
+			margin: 10px 0;
+			text-align: center;
+			font-size: 12px;
+			line-height: 39px;
+			color: #999999;
+		}
+
+		.is-no-more-text {
+			margin: 10px 0;
+			text-align: center;
+			font-size: 12px;
+			line-height: 39px;
+			color: #999999;
 		}
 	}
 
-	.load-more-btn {
-		margin: 10px 0;
-		width: 120px;
-		height: 39px;
-		line-height: 39px;
-		text-align: center;
-		font-size: 16px;
-		color: #ffffff;
-		background-color: #603dc1cc;
-		border-radius: 10px;
-		cursor: pointer;
-	}
-
-	.is-loading-more-text {
-		margin: 10px 0;
-		text-align: center;
-		font-size: 12px;
-		line-height: 39px;
-		color: #999999;
-	}
-
-	.is-no-more-text {
-		margin: 10px 0;
-		text-align: center;
-		font-size: 12px;
-		line-height: 39px;
-		color: #999999;
-	}
 }
 
 html.dark {
 	.pc-index {
+		.image-list {
+			.image-item {
+				.image-list-content {
+					.title {
+						.date {
+							background-color: #858AE3cc;
+						}
+					}
+				}
+			}
+		}
+
 		.load-more-btn {
 			color: #000;
 			background-color: #858AE3cc;

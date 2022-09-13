@@ -20,11 +20,7 @@ const clickImage = (imageInfo: any) => {
 		<div v-if="imageStore.refreshing" class="is-refreshing-text">
 			{{ t('notice.refreshing') }}
 		</div>
-		<imageList
-			:show-info-text="false"
-			:show-color="true"
-			@click-image="clickImage"
-		>
+		<imageList :show-info-text="false" @click-image="clickImage">
 			<template #content="{ data }">
 				<div class="image-list-content">
 					<div class="color">

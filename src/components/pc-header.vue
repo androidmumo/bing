@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const { isDark, toggleDark } = useDarks()
 const { t, toggleLocale, language } = useLanguage()
+const headerStore = useHeaderStore()
+const router = useRouter()
 
 const state = reactive({
 	showSleep: false,
@@ -13,6 +15,22 @@ const state = reactive({
 // 初始化显示状态
 state.showSleep = !isDark.value
 state.showWake = !!isDark.value
+
+// back
+const back = () => {
+	router.back()
+}
+
+// go home
+const goHome = () => {
+	router.replace('/')
+}
+
+// 点击返回按钮
+const clickBackBtn = () => {
+	headerStore.setBackBtnStatus(false)
+	back()
+}
 
 // 点击sleep
 const clickSleep = () => {
@@ -63,8 +81,15 @@ const clickLang = () => {
 <template>
 	<div class="pc-header">
 		<div class="header-left">
-			<i-bxl:bing class="icon" />
-			<span class="title">{{ t('header.title') }}</span>
+			<i-bxl:bing v-if="!headerStore.needBack" class="icon" @click="goHome" />
+			<span v-if="!headerStore.needBack" class="title" @click="goHome">{{
+				t('header.title')
+			}}</span>
+			<i-ion:ios-arrow-back
+				v-if="headerStore.needBack"
+				class="icon back-btn"
+				@click="clickBackBtn"
+			/>
 		</div>
 		<div class="header-center"></div>
 		<div class="header-right">
@@ -154,6 +179,13 @@ $left-right-margin: 30px; // 左右边距
 		margin-left: $left-right-margin;
 		.icon {
 			margin-right: 10px;
+			cursor: pointer;
+		}
+		.title {
+			cursor: pointer;
+		}
+		.back-btn {
+			font-size: 16px;
 		}
 	}
 	.header-center {

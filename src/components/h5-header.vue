@@ -179,6 +179,10 @@ $left-right-margin: 16px; // 左右边距
 		margin-left: $left-right-margin;
 		.icon {
 			margin-right: 10px;
+			cursor: pointer;
+		}
+		.title {
+			cursor: pointer;
 		}
 		.back-btn {
 			font-size: 16px;

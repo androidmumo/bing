@@ -7,6 +7,8 @@
 	.h5-content {
 		overflow-x: hidden;
 		overflow-y: scroll;
-		flex: 1;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 }
