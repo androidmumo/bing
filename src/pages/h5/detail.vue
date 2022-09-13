@@ -108,7 +108,11 @@ watch(
 					v-origin="state.uhdImageUrl"
 					class="image"
 				></div>
-				<div v-if="!state.uhdImageUrl" class="overlayer" @click="showUHDImage">
+				<div
+					v-show="!state.uhdImageUrl"
+					class="overlayer"
+					@click="showUHDImage"
+				>
 					{{ t('detail.overlayer') }}
 				</div>
 			</div>
