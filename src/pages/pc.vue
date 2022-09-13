@@ -1,14 +1,10 @@
 <template>
 	<div class="pc">
-		<pcHeader />
-		<div class="pc-content">
-			<router-view v-slot="{ Component }">
-				<keep-alive>
-					<component :is="Component"></component>
-				</keep-alive>
-			</router-view>
-		</div>
-		<pcFooter />
+		<router-view v-slot="{ Component }">
+			<keep-alive>
+				<component :is="Component"></component>
+			</keep-alive>
+		</router-view>
 	</div>
 </template>
 
@@ -19,5 +15,5 @@
 <route lang="yaml">
 meta:
   agent: pc
-  keepAlive: true
+  keepAlive: false
 </route>

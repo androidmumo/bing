@@ -22,5 +22,7 @@ detail:
   gaussian: 高斯模糊
   hd: HD
   uhd: UHD
-  remark: 以上图片均为原图，直接长按保存即可
+  remark: 
+    h5: 以上图片均为原图，直接长按保存即可
+    pc: 以上图片均为原图，直接右键保存即可
   overlayer: 点击加载UHD图片

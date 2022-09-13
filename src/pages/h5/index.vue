@@ -15,7 +15,8 @@ const clickImage = (imageInfo: any) => {
 </script>
 
 <template>
-	<div class="h5-index">
+	<h5Header />
+	<div class="h5-index h5-content">
 		<div v-if="imageStore.refreshing" class="is-refreshing-text">
 			{{ t('notice.refreshing') }}
 		</div>
@@ -56,6 +57,7 @@ const clickImage = (imageInfo: any) => {
 		<div v-if="imageStore.noMore" class="is-no-more-text">
 			{{ t('notice.noMore') }}
 		</div>
+		<h5Footer />
 	</div>
 </template>
 

@@ -1,14 +1,10 @@
 <template>
 	<div class="h5">
-		<h5Header />
-		<div class="h5-content">
-			<router-view v-slot="{ Component }">
-				<keep-alive>
-					<component :is="Component"></component>
-				</keep-alive>
-			</router-view>
-		</div>
-		<h5Footer />
+		<router-view v-slot="{ Component }">
+			<keep-alive>
+				<component :is="Component"></component>
+			</keep-alive>
+		</router-view>
 	</div>
 </template>
 
@@ -19,5 +15,5 @@
 <route lang="yaml">
 meta:
   agent: h5
-  keepAlive: true
+  keepAlive: false
 </route>

@@ -46,10 +46,11 @@ watch(
 </script>
 
 <template>
+	<h5Header />
 	<div v-if="state.loading" class="loading">
 		{{ t('notice.loading') }}
 	</div>
-	<div v-if="!state.loading" :key="state.data.id" class="h5-detail">
+	<div v-if="!state.loading" :key="state.data.id" class="h5-detail h5-content">
 		<div class="detail-image">
 			<div
 				v-preview="state.data?.base64"
@@ -118,8 +119,9 @@ watch(
 			</div>
 		</div>
 		<div class="remark">
-			{{ t('detail.remark') }}
+			{{ t('detail.remark.h5') }}
 		</div>
+		<h5Footer />
 	</div>
 </template>
 

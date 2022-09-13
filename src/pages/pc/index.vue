@@ -9,7 +9,8 @@ const clickImage = (imageInfo: any) => {
 </script>
 
 <template>
-	<div class="pc-index">
+	<pcHeader />
+	<div class="pc-index pc-content">
 		<imageList :show-info-text="false" @click-image="clickImage" />
 		<div
 			v-if="!imageStore.loadingMore && !imageStore.noMore"
@@ -25,6 +26,7 @@ const clickImage = (imageInfo: any) => {
 			{{ t('notice.noMore') }}
 		</div>
 	</div>
+	<pcFooter />
 </template>
 
 <style lang="scss">

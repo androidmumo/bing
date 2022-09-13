@@ -22,5 +22,7 @@ detail:
   gaussian: Gaussian
   hd: HD
   uhd: UHD
-  remark: The above pictures are all original pictures, just press and hold to save
+  remark:
+    h5: The above pictures are all original pictures, just press and hold to save
+    pc: The above pictures are the original pictures, just right click to save
   overlayer: Click to load UHD image
