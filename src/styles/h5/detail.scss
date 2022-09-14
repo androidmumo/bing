@@ -143,7 +143,10 @@
 					.square-spinner {
 						width: 55px;
 						display: block;
-						background-color: #ffffff;
+						border-radius: 2px;
+						backdrop-filter: saturate(180%) blur(20px);
+						-webkit-backdrop-filter: saturate(180%) blur(20px);
+						background-color: rgba(255, 255, 255, 0.72);
 						height: 55px;
 						-webkit-animation: 3s rotate2 ease-in-out infinite;
 						animation: 3s flip ease-in-out infinite;

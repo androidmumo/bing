@@ -35,8 +35,9 @@
 					position: absolute;
 					bottom: 0;
 					left: 0;
-					background-color: rgba(255, 255, 255, 0.72);
 					backdrop-filter: saturate(180%) blur(20px);
+					-webkit-backdrop-filter: saturate(180%) blur(20px);
+					background-color: rgba(255, 255, 255, 0.72);
 
 					.color {
 						margin: 0 16px;
