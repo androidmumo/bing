@@ -22,6 +22,7 @@
 
 			.image-item {
 				overflow: hidden;
+				position: relative;
 
 				.image {
 					width: 100%;
@@ -30,7 +31,12 @@
 				// 插槽
 				.image-list-content {
 					width: 100%;
-					padding: 10px 0;
+					padding: 16px 0;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					background-color: rgba(255, 255, 255, 0.72);
+					backdrop-filter: saturate(180%) blur(20px);
 
 					.color {
 						margin: 0 16px;
@@ -47,7 +53,7 @@
 					.title {
 						width: auto;
 						font-size: 16px;
-						margin: 8px 16px 0;
+						margin: 0 16px;
 						overflow: hidden;
 						text-overflow: ellipsis;
 						white-space: nowrap;
@@ -55,6 +61,7 @@
 						.date {
 							display: inline-block;
 							padding: 2px 8px;
+							margin-right: 4px;
 							color: #ffffff;
 							background-color: #603dc1cc;
 							border-radius: 4px;
@@ -111,6 +118,8 @@ html.dark {
 		.image-list {
 			.image-item {
 				.image-list-content {
+					background-color: rgba(0, 0, 0, 0.52);
+
 					.title {
 						.date {
 							background-color: #858AE3cc;

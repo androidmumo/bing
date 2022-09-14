@@ -3,6 +3,7 @@ import { UnwrapNestedRefs } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import dayjs from 'dayjs'
 
+const { isDark } = useDarks()
 const imageStore = useImageStore()
 const { t } = useLanguage()
 const router = useRouter()
@@ -52,19 +53,28 @@ onBeforeRouteLeave((to, from, next) => {
 			<imageList :show-info-text="false" @click-image="clickImage">
 				<template #content="{ data }">
 					<div class="image-list-content">
-						<div class="color">
+						<!-- <div class="color">
 							<div
 								v-for="colorKey in Object.keys(data.color)"
 								:key="colorKey"
 								:class="{ 'color-item': true, [colorKey]: true }"
 								:style="{ 'background-color': data.color[colorKey] }"
 							></div>
-						</div>
+						</div> -->
 						<div class="title">
-							<span :class="{ date: true, today: isToday(data?.date) }">
+							<span
+								:style="{
+									'background-color':
+										data.color[isDark ? 'LightVibrant' : 'DarkVibrant'],
+									color: isDark ? '#000' : '#fff',
+								}"
+								:class="{ date: true, today: isToday(data?.date) }"
+							>
 								{{ isToday(data?.date) ? t('index.today') : data?.date }}
 							</span>
-							{{ data?.title }}
+							<span>
+								{{ data?.title }}
+							</span>
 						</div>
 					</div>
 				</template>
