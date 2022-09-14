@@ -105,12 +105,16 @@ watch(
 				<div class="uhd-image">
 					<div class="title">{{ t('detail.uhd') }}</div>
 					<div class="image-wrap">
+						<img class="placeholder-image" :src="state.data?.base64" />
 						<div
 							:key="state.uhdImageUrl"
 							v-preview="state.data?.base64"
 							v-origin="state.uhdImageUrl"
-							class="image"
-						></div>
+						>
+							<div v-show="state.uhdImageUrl" class="image-inner">
+								<div class="square-spinner"></div>
+							</div>
+						</div>
 						<div
 							v-show="!state.uhdImageUrl"
 							class="overlayer"
