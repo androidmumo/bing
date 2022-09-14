@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { UnwrapNestedRefs } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
 import dayjs from 'dayjs'
 
 const imageStore = useImageStore()
 const { t } = useLanguage()
 const router = useRouter()
+
+const state = reactive({
+	scrollTop: 0, // 当前页面页面滚动条高度
+}) as UnwrapNestedRefs<any>
 
 const isToday = (date: string) => {
 	return dayjs(date).format('YYYY-MM-DD') === dayjs().format('YYYY-MM-DD')
@@ -12,11 +18,36 @@ const isToday = (date: string) => {
 const clickImage = (imageInfo: any) => {
 	router.push(`/h5/detail?id=${imageInfo.id}`)
 }
+
+// ------ 滚动条保留 start ------
+const h5Content = ref()
+
+// 保存滚动条位置
+const saveScrollTop = () => {
+	state.scrollTop = h5Content.value ? h5Content.value.scrollTop : 0
+	console.log('保存滚动条高度', state.scrollTop)
+}
+
+// 设置滚动条位置
+const setScrollTop = () => {
+	h5Content.value.scrollTop = state.scrollTop
+	console.log('设置滚动条高度', h5Content.value.scrollTop)
+}
+
+onActivated(() => {
+	setScrollTop()
+})
+
+onBeforeRouteLeave((to, from, next) => {
+	saveScrollTop()
+	next()
+})
+// ------ 滚动条保留 end ------
 </script>
 
 <template>
 	<h5Header />
-	<div class="h5-index h5-content">
+	<div ref="h5Content" class="h5-index h5-content">
 		<div v-if="imageStore.refreshing" class="is-refreshing-text">
 			{{ t('notice.refreshing') }}
 		</div>
