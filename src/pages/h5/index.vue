@@ -7,10 +7,21 @@ const { isDark } = useDarks()
 const imageStore = useImageStore()
 const { t } = useLanguage()
 const router = useRouter()
+const headerStore = useHeaderStore()
 
 const state = reactive({
 	scrollTop: 0, // 当前页面页面滚动条高度
 }) as UnwrapNestedRefs<any>
+
+onActivated(() => {
+	setScrollTop()
+	headerStore.setBackBtnStatus(false)
+})
+
+onBeforeRouteLeave((to, from, next) => {
+	saveScrollTop()
+	next()
+})
 
 const isToday = (date: string) => {
 	return dayjs(date).format('YYYY-MM-DD') === dayjs().format('YYYY-MM-DD')
@@ -34,15 +45,6 @@ const setScrollTop = () => {
 	h5Content.value.scrollTop = state.scrollTop
 	console.log('设置滚动条高度', h5Content.value.scrollTop)
 }
-
-onActivated(() => {
-	setScrollTop()
-})
-
-onBeforeRouteLeave((to, from, next) => {
-	saveScrollTop()
-	next()
-})
 // ------ 滚动条保留 end ------
 </script>
 
