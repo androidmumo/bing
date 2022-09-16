@@ -28,11 +28,11 @@ const clickImage = (item: any) => {
 			class="image-item"
 			@click="clickImage(item)"
 		>
-			<div
-				v-preview="item?.base64"
-				v-origin="item?.url.thumbnail"
+			<pmage
+				:placeholder="item?.base64"
+				:src="item?.url.thumbnail"
 				class="image"
-			></div>
+			/>
 			<slot name="content" :data="item"></slot>
 		</div>
 		<div

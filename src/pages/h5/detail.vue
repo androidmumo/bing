@@ -9,14 +9,20 @@ const { t } = useLanguage()
 
 const state = reactive({
 	data: {},
-	loading: false,
-	uhdImageUrl: '',
+	loading: false, // 正在请求接口
+	loadUHDImage: () => {}, // 加载UHD图片
+	loadingUHD: false, // 正在加载UHD图片
+	showUHDOverlayer: true, // 显示UHD图片的浮层
 }) as UnwrapNestedRefs<any>
+
+const resetState = () => {
+	state.loadingUHD = false
+	state.showUHDOverlayer = true
+}
 
 const loadData = () => {
 	const id = Number(route.query.id)
 	state.data = imageStore.dataList.filter((item) => item.id === id)[0] || {}
-	state.uhdImageUrl = ''
 	headerStore.setBackBtnStatus(true)
 	if (state.data.id !== id) {
 		// store中不存在这张图片的数据，需要请求接口
@@ -32,7 +38,17 @@ const loadData = () => {
 loadData()
 
 const showUHDImage = () => {
-	state.uhdImageUrl = state.data?.url?.uhd
+	state.loadingUHD = true
+	state.loadUHDImage()
+	state.showUHDOverlayer = false
+}
+
+const beforeLoad = (next: Function) => {
+	state.loadUHDImage = next
+}
+
+const onload = () => {
+	state.loadingUHD = false
 }
 
 // 监听路由id变化
@@ -40,6 +56,7 @@ watch(
 	() => route.query.id,
 	(newValue) => {
 		if (!newValue) return
+		resetState()
 		loadData()
 	}
 )
@@ -52,11 +69,11 @@ watch(
 	</div>
 	<div v-if="!state.loading" :key="state.data.id" class="h5-detail h5-content">
 		<div class="detail-image">
-			<div
-				v-preview="state.data?.base64"
-				v-origin="state.data?.url?.hd"
+			<pmage
+				:placeholder="state.data?.base64"
+				:src="state.data?.url?.hd"
 				class="image"
-			></div>
+			/>
 			<div class="image-content">
 				<div class="color">
 					<div
@@ -78,49 +95,52 @@ watch(
 		</div>
 		<div class="greyscale-image">
 			<div class="title">{{ t('detail.greyscale') }}</div>
-			<div
-				v-preview="state.data?.base64"
-				v-origin="state.data?.url?.greyscale"
+			<pmage
+				:placeholder="state.data?.base64"
+				:src="state.data?.url?.greyscale"
 				class="image"
-			></div>
+			/>
 		</div>
 		<div class="gaussian-image">
 			<div class="title">{{ t('detail.gaussian') }}</div>
-			<div
-				v-preview="state.data?.base64"
-				v-origin="state.data?.url?.gaussian"
+			<pmage
+				:placeholder="state.data?.base64"
+				:src="state.data?.url?.gaussian"
 				class="image"
-			></div>
+			/>
 		</div>
 		<div class="hd-image">
 			<div class="title">{{ t('detail.hd') }}</div>
-			<div
-				v-preview="state.data?.base64"
-				v-origin="state.data?.url?.hd"
+			<pmage
+				:placeholder="state.data?.base64"
+				:src="state.data?.url?.hd"
 				class="image"
-			></div>
+			/>
 		</div>
 		<div class="uhd-image">
 			<div class="title">{{ t('detail.uhd') }}</div>
-			<div class="image-wrap">
-				<img class="placeholder-image" :src="state.data?.base64" />
-				<div
-					:key="state.uhdImageUrl"
-					v-preview="state.data?.base64"
-					v-origin="state.uhdImageUrl"
-				>
-					<div v-show="state.uhdImageUrl" class="image-inner">
+			<pmage
+				class="image"
+				:placeholder="state.data?.base64"
+				:src="state.data?.url.uhd"
+				@before-load="beforeLoad"
+				@onload="onload"
+			>
+				<template #default>
+					<div v-if="state.loadingUHD" class="image-inner">
 						<div class="square-spinner"></div>
 					</div>
-				</div>
-				<div
-					v-show="!state.uhdImageUrl"
-					class="overlayer"
-					@click="showUHDImage"
-				>
-					{{ t('detail.overlayer') }}
-				</div>
-			</div>
+				</template>
+				<template #top>
+					<div
+						v-if="state.showUHDOverlayer"
+						class="overlayer"
+						@click="showUHDImage"
+					>
+						{{ t('detail.overlayer') }}
+					</div>
+				</template>
+			</pmage>
 		</div>
 		<div class="remark">
 			{{ t('detail.remark.h5') }}
