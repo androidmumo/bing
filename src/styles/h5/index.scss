@@ -7,10 +7,12 @@
 
 	.image-list {
 		width: 100%;
+		padding: 16px 16px 0;
 		flex: 1;
 
 		.image-item {
 			overflow: hidden;
+			margin-bottom: 16px;
 			position: relative;
 
 			.image {
