@@ -38,7 +38,7 @@ specifiers:
   pinia: ^2.0.21
   pinia-plugin-persistedstate: ^2.1.1
   plop: ^3.1.1
-  pmage: ^0.2.8
+  pmage: ^0.2.11
   prettier: ^2.7.1
   prism-theme-vars: ^0.2.4
   prismjs: ^1.29.0
@@ -69,7 +69,7 @@ specifiers:
 dependencies:
   axios: 0.27.2
   dayjs: 1.11.5
-  pmage: 0.2.8
+  pmage: 0.2.11
   vue: 3.2.37
 
 devDependencies:
@@ -539,8 +539,8 @@ packages:
       - supports-color
     dev: true
 
-  /@intlify/bundle-utils/3.1.0_vue-i18n@9.2.2:
-    resolution: {integrity: sha512-ghlJ0kR2cCQ8D+poKknC0Xx0ncOt3J3os7CcIAqqIWVF7k6AtGoCDnIru+YzlZcvFRNmP9wEZ7jKliojCdAWNg==}
+  /@intlify/bundle-utils/3.1.2_vue-i18n@9.2.2:
+    resolution: {integrity: sha512-amgSo0NN5OKWYdcgFmfJqo2tcUcZ6C66Bxm5ALQnB0m3MUQtS9aJzKoIo+EU9XQiOVmlBFxRtNoZm+psHa5FNA==}
     engines: {node: '>= 12'}
     peerDependencies:
       petite-vue-i18n: '*'
@@ -617,7 +617,7 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/bundle-utils': 3.1.0_vue-i18n@9.2.2
+      '@intlify/bundle-utils': 3.1.2_vue-i18n@9.2.2
       '@intlify/shared': 9.3.0-beta.3
       '@rollup/pluginutils': 4.2.1
       debug: 4.3.4
@@ -3901,8 +3901,8 @@ packages:
       v8flags: 4.0.0
     dev: true
 
-  /pmage/0.2.8:
-    resolution: {integrity: sha512-ZWTlVjDod99VUHhGOwnh4DPXQIJztSTWGDo1RQrnbx5wCh7drIyz9revB6STT+lFT/nQKlobq8CEUpTPs70B+A==}
+  /pmage/0.2.11:
+    resolution: {integrity: sha512-hhqJUZwO92Dcp8dPo7rR6hNL9of0biaxlNed3nXV6qqgEU+/D2KCDbOtzWj1Rw2yxaxPkdGBhBjftTcg2K1v4g==}
     dependencies:
       vue: 3.2.37
     dev: false

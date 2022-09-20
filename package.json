@@ -28,7 +28,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
-    "pmage": "^0.2.8",
+    "pmage": "^0.2.11",
     "vue": "^3.2.37"
   },
   "engines": {
