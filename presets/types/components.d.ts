@@ -16,9 +16,11 @@ declare module '@vue/runtime-core' {
     'IIon:iosArrowBack': typeof import('~icons/ion/ios-arrow-back')['default']
     'IIon:languageOutline': typeof import('~icons/ion/language-outline')['default']
     ImageList: typeof import('./../../src/components/image-list.vue')['default']
+    ImagePreview: typeof import('./../../src/components/image-preview.vue')['default']
     'IMdi:github': typeof import('~icons/mdi/github')['default']
     PcFooter: typeof import('./../../src/components/pc-footer.vue')['default']
     PcHeader: typeof import('./../../src/components/pc-header.vue')['default']
+    PcImagePreview: typeof import('./../../src/components/pc-image-preview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

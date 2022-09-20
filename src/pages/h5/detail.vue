@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { getInfo } from '../../api/index'
 import { UnwrapNestedRefs } from 'vue'
+import { ImagePreview } from 'vant'
+import 'vant/es/image-preview/style'
 
 const route = useRoute()
 const imageStore = useImageStore()
@@ -60,6 +62,13 @@ watch(
 		loadData()
 	}
 )
+
+const clickImage = (type: string) => {
+	ImagePreview({
+		images: [state.data?.url[type]],
+		showIndex: false,
+	})
+}
 </script>
 
 <template>
@@ -99,6 +108,7 @@ watch(
 				:placeholder="state.data?.base64"
 				:src="state.data?.url?.greyscale"
 				class="image"
+				@click="clickImage('greyscale')"
 			/>
 		</div>
 		<div class="gaussian-image">
@@ -107,6 +117,7 @@ watch(
 				:placeholder="state.data?.base64"
 				:src="state.data?.url?.gaussian"
 				class="image"
+				@click="clickImage('gaussian')"
 			/>
 		</div>
 		<div class="hd-image">
@@ -115,6 +126,7 @@ watch(
 				:placeholder="state.data?.base64"
 				:src="state.data?.url?.hd"
 				class="image"
+				@click="clickImage('hd')"
 			/>
 		</div>
 		<div class="uhd-image">
@@ -125,6 +137,7 @@ watch(
 				:src="state.data?.url.uhd"
 				@before-load="beforeLoad"
 				@onload="onload"
+				@click="clickImage('uhd')"
 			>
 				<template #default>
 					<div v-if="state.loadingUHD" class="image-inner">
@@ -135,7 +148,7 @@ watch(
 					<div
 						v-if="state.showUHDOverlayer"
 						class="overlayer"
-						@click="showUHDImage"
+						@click.self.stop="showUHDImage"
 					>
 						{{ t('detail.overlayer') }}
 					</div>

@@ -13,6 +13,8 @@ const state = reactive({
 	loadUHDImage: () => {}, // 加载UHD图片
 	loadingUHD: false, // 正在加载UHD图片
 	showUHDOverlayer: true, // 显示UHD图片的浮层
+	previewVisible: false, // 显示图片预览
+	previewSrc: '', // 预览图片链接
 }) as UnwrapNestedRefs<any>
 
 const resetState = () => {
@@ -60,6 +62,11 @@ watch(
 		loadData()
 	}
 )
+
+const clickImage = (type: string) => {
+	state.previewSrc = state.data?.url[type]
+	state.previewVisible = true
+}
 </script>
 
 <template>
@@ -101,6 +108,7 @@ watch(
 						:placeholder="state.data?.base64"
 						:src="state.data?.url?.greyscale"
 						class="image"
+						@click="clickImage('greyscale')"
 					/>
 				</div>
 				<div class="gaussian-image">
@@ -109,6 +117,7 @@ watch(
 						:placeholder="state.data?.base64"
 						:src="state.data?.url?.gaussian"
 						class="image"
+						@click="clickImage('gaussian')"
 					/>
 				</div>
 				<div class="hd-image">
@@ -117,6 +126,7 @@ watch(
 						:placeholder="state.data?.base64"
 						:src="state.data?.url?.hd"
 						class="image"
+						@click="clickImage('hd')"
 					/>
 				</div>
 				<div class="uhd-image">
@@ -127,6 +137,7 @@ watch(
 						:src="state.data?.url.uhd"
 						@before-load="beforeLoad"
 						@onload="onload"
+						@click="clickImage('uhd')"
 					>
 						<template #default>
 							<div v-if="state.loadingUHD" class="image-inner">
@@ -137,7 +148,7 @@ watch(
 							<div
 								v-if="state.showUHDOverlayer"
 								class="overlayer"
-								@click="showUHDImage"
+								@click.self.stop="showUHDImage"
 							>
 								{{ t('detail.overlayer') }}
 							</div>
@@ -148,6 +159,10 @@ watch(
 			<div class="remark">
 				{{ t('detail.remark.pc') }}
 			</div>
+			<PcImagePreview
+				v-model:visible="state.previewVisible"
+				:src="state.previewSrc"
+			/>
 		</div>
 		<pcFooter />
 	</div>
