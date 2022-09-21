@@ -12,9 +12,15 @@ const state = reactive({
 	langAnimation: false, // 允许语言切换按钮动画
 })
 
+onActivated(() => {
+	initDarkStatus()
+})
+
 // 初始化显示状态
-state.showSleep = !isDark.value
-state.showWake = !!isDark.value
+const initDarkStatus = () => {
+	state.showSleep = !isDark.value
+	state.showWake = !!isDark.value
+}
 
 // back
 const back = () => {
