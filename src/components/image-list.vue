@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { UnwrapNestedRefs } from 'vue'
 const imageStore = useImageStore()
 const emit = defineEmits(['click-image'])
 
@@ -8,6 +9,28 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
 	showInfoText: true,
 })
+
+const state = reactive({
+	loadStatus: {}, // 图片加载状态
+}) as UnwrapNestedRefs<any>
+
+const beforeLoad = (next: Function, index: number) => {
+	state.loadStatus[index] = {
+		status: false,
+		next,
+	}
+	if (index === 0) next()
+	if (
+		state.loadStatus[index - 1] &&
+		state.loadStatus[index - 1].status === true
+	)
+		next()
+}
+
+const onload = (index: number) => {
+	state.loadStatus[index].status = true
+	state.loadStatus[index + 1] && state.loadStatus[index + 1].next()
+}
 
 const clickImage = (item: any) => {
 	emit('click-image', item)
@@ -23,7 +46,7 @@ const clickImage = (item: any) => {
 			正在刷新
 		</div>
 		<div
-			v-for="item in imageStore.dataList"
+			v-for="(item, index) in imageStore.dataList"
 			:key="item?.id"
 			class="image-item"
 			@click="clickImage(item)"
@@ -32,6 +55,8 @@ const clickImage = (item: any) => {
 				:placeholder="item?.base64"
 				:src="item?.url.thumbnail"
 				class="image"
+				@before-load="(next: Function) => beforeLoad(next, index)"
+				@onload="onload(index)"
 			/>
 			<slot name="content" :data="item"></slot>
 		</div>

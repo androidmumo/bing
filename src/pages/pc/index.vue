@@ -55,14 +55,6 @@ const setScrollTop = () => {
 			<imageList :show-info-text="false" @click-image="clickImage">
 				<template #content="{ data }">
 					<div class="image-list-content">
-						<!-- <div class="color">
-							<div
-								v-for="colorKey in Object.keys(data.color)"
-								:key="colorKey"
-								:class="{ 'color-item': true, [colorKey]: true }"
-								:style="{ 'background-color': data.color[colorKey] }"
-							></div>
-						</div> -->
 						<div class="title">
 							<span
 								:style="{
