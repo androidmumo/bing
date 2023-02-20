@@ -17,7 +17,7 @@ const checkMediaForDark = () => {
 
 // 初始化暗黑模式
 const checkAndSetDark = () => {
-	const storage = window.localStorage
+	const storage = window.sessionStorage
 	const isDark = storage.getItem('dark')
 	if (isDark === null) return checkMediaForDark()
 	toggleDark(isDark === '1')

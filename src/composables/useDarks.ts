@@ -1,6 +1,6 @@
 const isDark = useDark()
 const toggleDark = (value: boolean) => {
-	const storage = window.localStorage
+	const storage = window.sessionStorage
 	storage.setItem('dark', value ? '1' : '0')
 	useToggle(isDark)(value)
 }
