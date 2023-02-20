@@ -15,6 +15,14 @@ const checkMediaForDark = () => {
 	toggleDark(isDark)
 }
 
+// 初始化暗黑模式
+const checkAndSetDark = () => {
+	const storage = window.localStorage
+	const isDark = storage.getItem('dark')
+	if (isDark === null) return checkMediaForDark()
+	toggleDark(isDark === '1')
+}
+
 // 根据设备屏幕宽度决定路由
 const checkDeviceForRoute = (next: any) => {
 	const isMobileDevice = window.screen.availWidth < 1200
@@ -27,7 +35,7 @@ const checkDeviceForRoute = (next: any) => {
 
 router.beforeEach((to, from, next) => {
 	if (to.path === '/') {
-		checkMediaForDark()
+		checkAndSetDark()
 		checkDeviceForRoute(next)
 	} else {
 		next()
