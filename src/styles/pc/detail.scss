@@ -90,7 +90,7 @@
 						font-weight: bold;
 						display: inline-block;
 						padding-right: 8px;
-						border-bottom: 3px solid #603dc1cc;
+						border-bottom: 3px solid #000000CC;
 						margin-bottom: 16px;
 					}
 
@@ -117,7 +117,7 @@
 					display: inline-block;
 					font-size: 16px;
 					padding-right: 8px;
-					border-bottom: 3px solid #603dc1cc;
+					border-bottom: 3px solid #000000CC;
 					margin-bottom: 8px;
 				}
 
@@ -178,16 +178,18 @@ html.dark {
 				.image-content {
 					.container {
 						.date {
-							border-bottom: 3px solid #858AE3cc;
+							border-bottom: 3px solid #FFFFFFCC;
 						}
 					}
 				}
 			}
 
 			.gaussian-image,
-			.greyscale-image {
+			.greyscale-image,
+			.hd-image,
+			.uhd-image {
 				.title {
-					border-bottom: 3px solid #858AE3cc;
+					border-bottom: 3px solid #FFFFFFCC;
 				}
 			}
 		}
