@@ -52,7 +52,11 @@ const setScrollTop = () => {
 	<pcHeader />
 	<div ref="pcContent" class="pc-index pc-content">
 		<div class="index-content">
-			<imageList :show-info-text="false" @click-image="clickImage">
+			<imageList
+				:show-info-text="false"
+				:auto-load="3"
+				@click-image="clickImage"
+			>
 				<template #content="{ data }">
 					<div class="image-list-content">
 						<div class="title">

@@ -54,7 +54,7 @@ const setScrollTop = () => {
 		<div v-if="imageStore.refreshing" class="is-refreshing-text">
 			{{ t('notice.refreshing') }}
 		</div>
-		<imageList :show-info-text="false" @click-image="clickImage">
+		<imageList :show-info-text="false" :auto-load="3" @click-image="clickImage">
 			<template #content="{ data }">
 				<div class="image-list-content">
 					<!-- <div class="color">
