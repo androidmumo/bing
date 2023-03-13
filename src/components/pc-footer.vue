@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import versionJSON from '../../version.json'
+import dayjs from 'dayjs'
+
+const state = reactive({
+	compileTime: '',
+})
+
+state.compileTime = dayjs(versionJSON.compileTime).format('YYYY-MM-DD HH:mm:ss')
+</script>
 
 <template>
 	<div class="pc-footer">
@@ -6,10 +15,11 @@
 			<a class="link-item" href="https://www.mcloc.cn">小马奔腾的主页</a>
 			<a class="link-item" href="https://blog.mcloc.cn">小马奔腾的博客</a>
 			<a class="link-item" href="https://github.com/androidmumo/bing">
-				<i-mdi:github />
+				<i-mdi:github class="link-item-icon" />GitHub
 			</a>
 		</div>
 		<div class="copyright">Copyright © 2022 mcloc.cn</div>
+		<div class="build-time">编译时间: {{ state.compileTime }}</div>
 		<div class="beian">
 			<a target="_blank" href="https://beian.miit.gov.cn/"
 				>晋ICP备20001086号-1
@@ -44,8 +54,14 @@
 			display: flex;
 			align-items: center;
 		}
+		.link-item-icon {
+			margin-right: 3px;
+		}
 	}
 	.copyright {
+		margin-bottom: 20px;
+	}
+	.build-time {
 		margin-bottom: 20px;
 	}
 	.beian {
