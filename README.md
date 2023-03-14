@@ -45,9 +45,9 @@ pnpm build
 
 ### 其他
 
-您可能希望更改接口，它在 `src/utils/http.ts` 下被指定。
+您可能希望改用自建接口，它在 `src/utils/http.ts` 下被指定。
 
-您想要更改的大部分应该在 `src/pages`（页面）和 `src/style` （样式）下。
+您想要更改的大部分内容应该位于 `src/pages`（页面）和 `src/style` （样式）这两个目录。
 
 
 
@@ -70,6 +70,6 @@ pnpm build
 
 这是一个意外收获，希望它也能给您带来便利。
 
-如果您想试试这个插件，请移步这个仓库：
+如果您想试试这个插件，请看：
 
 https://github.com/androidmumo/pmage
