@@ -1,9 +1,5 @@
 # 中文
 
-nesting:
-  sir: 男人
-  lady: 女士
-
 header:
   title: 必应每日一图
 
@@ -26,3 +22,6 @@ detail:
     h5: 以上图片均为原图，直接长按保存即可
     pc: 以上图片均为原图，直接右键保存即可
   overlayer: 点击加载UHD图片
+
+footer:
+  buildTime: 编译时间

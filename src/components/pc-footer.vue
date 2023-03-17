@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import versionJSON from '../../version.json'
 import dayjs from 'dayjs'
+const { t } = useLanguage()
 
 const state = reactive({
 	compileTime: '',
@@ -19,7 +20,9 @@ state.compileTime = dayjs(versionJSON.compileTime).format('YYYY-MM-DD HH:mm:ss')
 			</a>
 		</div>
 		<div class="copyright">Copyright © 2022 mcloc.cn</div>
-		<div class="build-time">编译时间: {{ state.compileTime }}</div>
+		<div class="build-time">
+			{{ `${t('footer.buildTime')}: ${state.compileTime}` }}
+		</div>
 		<div class="beian">
 			<a target="_blank" href="https://beian.miit.gov.cn/"
 				>晋ICP备20001086号-1

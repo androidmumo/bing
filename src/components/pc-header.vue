@@ -28,8 +28,12 @@ const back = () => {
 }
 
 // go home
-const goHome = () => {
-	router.replace('/')
+// const goHome = () => {
+// 	router.replace('/')
+// }
+
+const refresh = () => {
+	window.location.reload()
 }
 
 // 点击返回按钮
@@ -87,8 +91,8 @@ const clickLang = () => {
 <template>
 	<div class="pc-header">
 		<div class="header-left">
-			<i-bxl:bing v-if="!headerStore.needBack" class="icon" @click="goHome" />
-			<span v-if="!headerStore.needBack" class="title" @click="goHome">{{
+			<i-bxl:bing v-if="!headerStore.needBack" class="icon" @click="refresh" />
+			<span v-if="!headerStore.needBack" class="title" @click="refresh">{{
 				t('header.title')
 			}}</span>
 			<i-ion:ios-arrow-back

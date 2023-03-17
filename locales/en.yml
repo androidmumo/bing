@@ -1,9 +1,5 @@
 # English
 
-nesting:
-  sir: man
-  lady: lady
-
 header:
   title: Bing Photo of the Day
 
@@ -26,3 +22,6 @@ detail:
     h5: The above pictures are all original pictures, just press and hold to save
     pc: The above pictures are the original pictures, just right click to save
   overlayer: Click to load UHD image
+
+footer:
+  buildTime: build time
