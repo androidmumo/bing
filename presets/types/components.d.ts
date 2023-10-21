@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Counter: typeof import('./../../src/components/counter.vue')['default']
     H5Footer: typeof import('./../../src/components/h5-footer.vue')['default']
     H5Header: typeof import('./../../src/components/h5-header.vue')['default']
     'IBxl:bing': typeof import('~icons/bxl/bing')['default']
@@ -16,7 +15,6 @@ declare module '@vue/runtime-core' {
     'IIon:iosArrowBack': typeof import('~icons/ion/ios-arrow-back')['default']
     'IIon:languageOutline': typeof import('~icons/ion/language-outline')['default']
     ImageList: typeof import('./../../src/components/image-list.vue')['default']
-    ImagePreview: typeof import('./../../src/components/image-preview.vue')['default']
     'IMdi:github': typeof import('~icons/mdi/github')['default']
     PcFooter: typeof import('./../../src/components/pc-footer.vue')['default']
     PcHeader: typeof import('./../../src/components/pc-header.vue')['default']

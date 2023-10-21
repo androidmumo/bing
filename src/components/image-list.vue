@@ -49,6 +49,7 @@ const debounce = (fn: Function, delay = 100) => {
 
 // 检查滚动状态，决定是否加载
 const checkScrollForAutoLoad = () => {
+	if (imageStore.noMore) return
 	const safety = 100 // 提前加载距离
 	const clientHeight =
 		document.body.clientHeight || document.documentElement.clientHeight
@@ -66,16 +67,21 @@ const checkScrollForAutoLoad = () => {
 	}
 }
 
+const debounceCheckScrollForAutoLoad = debounce(checkScrollForAutoLoad)
+
+// 第一次进入页面时检查一次是否需要加载
+debounceCheckScrollForAutoLoad()
+
 const listenScroll = () => {
-	window.addEventListener('scroll', reduceFn(checkScrollForAutoLoad), true)
+	window.addEventListener('scroll', debounceCheckScrollForAutoLoad, true)
 }
 
-onMounted(() => {
+onActivated(() => {
 	if (props.autoLoad) listenScroll()
 })
 
-onUnmounted(() => {
-	window.removeEventListener('scroll', reduceFn(checkScrollForAutoLoad), true)
+onDeactivated(() => {
+	window.removeEventListener('scroll', debounceCheckScrollForAutoLoad, true)
 })
 
 const beforeLoad = (next: Function, index: number) => {
