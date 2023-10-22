@@ -6,6 +6,8 @@
 
 ## Docker部署
 
+docker镜像: https://hub.docker.com/r/androidmumo/bing
+
 1.参照以下模板在本地目录中新建config.js文件
 
 ```
