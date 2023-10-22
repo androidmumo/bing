@@ -1,7 +1,7 @@
 // 数据库模块
 
 // 导入配置文件
-const { databaseConfig } = require("../config/config");
+const { databaseConfig } = require("../data/config");
 const { eventBus } = require("./eventBus"); // 事件总线
 
 // 导入模块

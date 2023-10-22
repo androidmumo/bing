@@ -1,14 +1,12 @@
 // 清理过期图片
 
 // 导入配置文件
-const {
-	baseConfig,
-	installConfig,
-} = require("../config/config");
+const { installConfig } = require("../config/config");
+const { baseConfig } = require("../data/config");
 
 // 初始化配置项
-const { dir, surviveDays, retryTimeout } = baseConfig;
-const { databaseTable } = installConfig;
+const { surviveDays, retryTimeout } = baseConfig;
+const { dir, databaseTable } = installConfig;
 
 // 导入模块
 const { logger } = require("./log4js"); // 日志模块

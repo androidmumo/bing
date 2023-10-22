@@ -1,7 +1,7 @@
 // 定时任务
 
 // 引入配置文件
-const { baseConfig } = require("../config/config");
+const { baseConfig } = require("../data/config");
 
 // 初始化配置项
 let { updateTime } = baseConfig;

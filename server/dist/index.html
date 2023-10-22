@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" href="./assets/favicon.4869dada.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<title>必应每日一图</title>
+	<script>
+		; (function () {
+			const prefersDark =
+				window.matchMedia &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches
+			const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
+			if (setting === 'dark' || (prefersDark && setting !== 'light'))
+				document.documentElement.classList.toggle('dark', true)
+		})()
+	</script>
+  <script type="module" crossorigin src="./assets/index.7b144718.js"></script>
+  <link rel="stylesheet" href="./assets/index.38192df5.css">
+</head>
+
+<body>
+	<div id="app"></div>
+	
+	<script>
+		var _hmt = _hmt || [];
+		(function () {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?03b40e76a4f658ab61aedb48f51e29a8";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</body>
+
+</html>

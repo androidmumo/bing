@@ -6,7 +6,7 @@ const getList = (params: {
 }) => {
 	return http({
 		method: 'get',
-		url: '/bing/getList',
+		url: '/api/getList',
 		params: {
 			pageSize: params.pageSize,
 			currentPage: params.currentPage,
@@ -17,7 +17,7 @@ const getList = (params: {
 const getInfo = (params: { id: number }) => {
 	return http({
 		method: 'get',
-		url: '/bing/getInfo',
+		url: '/api/getInfo',
 		params: {
 			id: params.id,
 		},

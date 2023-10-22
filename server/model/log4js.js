@@ -7,7 +7,7 @@ log4js.configure({
   appenders: {
     fileout: {
       type: "file",
-      filename: "./log/fileout.log",
+      filename: "./data/log/fileout.log",
       maxLogSize: 10240,
     },
     consoleout: { type: "console" },

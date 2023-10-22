@@ -7,11 +7,8 @@ const { installConfig } = require("../config/config");
 const { databaseTable } = installConfig;
 
 // 导入模块
-const { operateDb } = require("../model/conn"); // 数据库模块
-const { logger } = require("../model/log4js"); // 日志模块
-
-logger.debug("开始安装");
-logger.debug("开始创建数据表");
+const { operateDb } = require("./conn"); // 数据库模块
+const { logger } = require("./log4js"); // 日志模块
 
 const SQL_INIT = `
     CREATE TABLE IF NOT EXISTS ${databaseTable}(
@@ -27,11 +24,14 @@ const SQL_INIT = `
   `;
 
 async function install() {
+  logger.debug("开始安装");
+  logger.debug("开始创建数据表");
   await operateDb(SQL_INIT, null).then((result) => {
     logger.info("数据表创建成功");
   });
   logger.info("安装完成");
-  process.exit();
 }
 
-install();
+module.exports = {
+  install,
+};

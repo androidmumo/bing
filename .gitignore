@@ -1,13 +1,12 @@
-dist
+client/dist
 node_modules
 .eslintcache
 version.json
 
 .DS_Store
-resources
-db
-
-/log
+server/data/resources
+server/data/log
+server/data/config.js
 
 
 # local env files

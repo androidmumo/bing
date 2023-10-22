@@ -2,15 +2,15 @@
 
 // 导入配置文件
 const {
-  baseConfig,
   installConfig,
   apiBaseConfig,
 } = require("../config/config");
+const { baseConfig } = require("../data/config");
 
 // 初始化配置项
-const { dir, retryTimeout } = baseConfig;
-const { databaseTable } = installConfig;
-const { dbHost, dbPort, static } = apiBaseConfig;
+const { retryTimeout } = baseConfig;
+const { dir, databaseTable } = installConfig;
+const { static } = apiBaseConfig;
 
 // 导入模块
 const {
@@ -76,11 +76,7 @@ const updateBing = async function () {
     height: 9,
     quality: 90,
   });
-  const baseImgUrl = `${dbHost}${
-    dbPort === 80 ? "" : ":" + dbPort
-  }/${static}/${dayjs().format("YYYY")}/${dayjs().format(
-    "MM"
-  )}/${dayjs().format("DD")}/${dayjs().format("YYYY-MM-DD")}`;
+  const baseImgUrl = `/${static}/${dayjs().format("YYYY")}/${dayjs().format("MM")}/${dayjs().format("DD")}/${dayjs().format("YYYY-MM-DD")}`;
   const urlObj = {
     hd: `${baseImgUrl}_hd.jpg`,
     uhd: `${baseImgUrl}_uhd.jpg`,
