@@ -1,0 +1,32 @@
+{
+  "name": "bing-serve",
+  "version": "1.0.0",
+  "description": "### 使用 node.js 构建的必应每日一图服务端",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js",
+    "dev": "node index.js dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/androidmumo/bing-serve.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/androidmumo/bing-serve/issues"
+  },
+  "homepage": "https://github.com/androidmumo/bing-serve#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "dayjs": "^1.10.4",
+    "express": "^4.17.1",
+    "jimp": "^0.16.1",
+    "log4js": "^6.3.0",
+    "mysql": "^2.18.1",
+    "node-vibrant": "^3.2.1-alpha.1"
+  }
+}
