@@ -15,7 +15,7 @@ docker镜像: https://hub.docker.com/r/androidmumo/bing
 
 // 基础配置
 const baseConfig = {
-  port: 3000, // 服务启动端口号(请勿更改)
+  port: 3000, // 服务启动端口号 (默认为3000)
   updateTime: "00:01:00", // 每天更新时间
   DelayTime: 5, // 延迟时间（分钟） 即每天00:05：00的时候才显示当天的图片。性能较差的实例应适当调大此值
   surviveDays: 90, // 图片存活天数（即图片保存多少天，到期即清理） 0为不清理
@@ -41,4 +41,6 @@ module.exports = {
 
 2.映射目录: 本地目录 > /usr/src/app/data
 
-3.启动容器
+3.映射端口，容器默认端口为3000
+
+4.启动容器
