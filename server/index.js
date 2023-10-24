@@ -38,13 +38,6 @@ const app = new express();
 // 初始化数据库
 install();
 
-// 定时任务
-startUpdateJob();
-eventBus.on("to-update", () => {
-  updateBingByChildProcess();
-  deleteBingByChildProcess();
-});
-
 // 用子进程更新图片
 const updateBingByChildProcess = function () {
   childProcess.fork("./model/update.js");
@@ -54,6 +47,16 @@ const updateBingByChildProcess = function () {
 const deleteBingByChildProcess = function () {
   childProcess.fork("./model/delete.js");
 };
+
+// 定时任务
+startUpdateJob();
+eventBus.on("to-update", () => {
+  updateBingByChildProcess();
+  deleteBingByChildProcess();
+});
+
+// 首次运行时更新图片
+updateBingByChildProcess();
 // ------ 逻辑代码 end------
 
 // ------ 接口 start------

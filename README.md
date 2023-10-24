@@ -1,8 +1,21 @@
+<div align="center">
+    <h1>必应每日一图</h1>
+    <p>每天更新一张图片（来源：必应）。诗曰：沉舟侧畔千帆过。一起来领略世界之美吧！</p>
+    <p>DEMO（基于此仓库实时部署）: https://bing.mcloc.cn</p>
+</div>
+
+## Docker部署
+
+docker镜像: https://hub.docker.com/r/androidmumo/bing
+
+1.参照以下模板在本地目录中新建config.js文件
+
+```
 // 用户配置文件 config.js
 
 // 基础配置
 const baseConfig = {
-  port: 3000, // 服务启动端口号
+  port: 3000, // 服务启动端口号 (默认为3000)
   updateTime: "00:01:00", // 每天更新时间 (开始从必应官方服务器下载图片的时间)
   DelayTime: 5, // 延迟时间（分钟） 即每天00:05：00的时候才显示当天的图片。性能较差的实例应适当调大此值 (仅针对'/api/getImage'接口)
   surviveDays: 90, // 图片存活天数（即图片保存多少天，到期即清理） 0为不清理
@@ -23,3 +36,11 @@ module.exports = {
   baseConfig,
   databaseConfig,
 };
+
+```
+
+2.映射目录: 本地目录 > /usr/src/app/data
+
+3.映射端口，容器默认端口为3000
+
+4.启动容器
