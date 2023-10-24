@@ -6,6 +6,7 @@ const route = useRoute()
 const imageStore = useImageStore()
 const headerStore = useHeaderStore()
 const { t } = useLanguage()
+let id = Number(route.query.id)
 
 const state = reactive({
 	data: {},
@@ -17,13 +18,15 @@ const state = reactive({
 	previewSrc: '', // 预览图片链接
 }) as UnwrapNestedRefs<any>
 
+const uhdLoadState = reactive({}) as UnwrapNestedRefs<any>
+
 const resetState = () => {
 	state.loadingUHD = false
 	state.showUHDOverlayer = true
 }
 
 const loadData = () => {
-	const id = Number(route.query.id)
+	id = Number(route.query.id)
 	state.data = imageStore.dataList.filter((item) => item.id === id)[0] || {}
 	headerStore.setBackBtnStatus(true)
 	if (state.data.id !== id) {
@@ -40,6 +43,7 @@ const loadData = () => {
 loadData()
 
 const showUHDImage = () => {
+	uhdLoadState[id] = true
 	state.loadingUHD = true
 	state.loadUHDImage()
 	state.showUHDOverlayer = false
@@ -47,6 +51,9 @@ const showUHDImage = () => {
 
 const beforeLoad = (next: Function) => {
 	state.loadUHDImage = next
+	if (uhdLoadState[id]) {
+		showUHDImage()
+	}
 }
 
 const onload = () => {

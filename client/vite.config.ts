@@ -18,8 +18,8 @@ export default defineConfig({
 		//使用IP能访问
 		host: '0.0.0.0',
 		proxy: {
-			'/api': 'http://bingtest.mcloc.cn',
-			'/img': 'http://bingtest.mcloc.cn',
+			'/api': 'http://bingnext.mcloc.cn',
+			'/img': 'http://bingnext.mcloc.cn',
 		},
 	},
 	resolve: {
