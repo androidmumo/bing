@@ -5,10 +5,9 @@
 </div>
 
 
+### 预览
 
-如果您想**使用**必应每日一图接口，或者**自行部署**必应每日一图服务端，请移步服务端仓库:
-
-https://github.com/androidmumo/bing-serve
+![image](../doc/image.png)
 
 
 
