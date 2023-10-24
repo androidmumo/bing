@@ -27,6 +27,7 @@ const resetState = () => {
 
 const loadData = () => {
 	id = Number(route.query.id)
+	state.showUHDOverlayer = !uhdLoadState[id]
 	state.data = imageStore.dataList.filter((item) => item.id === id)[0] || {}
 	headerStore.setBackBtnStatus(true)
 	if (state.data.id !== id) {
@@ -51,9 +52,7 @@ const showUHDImage = () => {
 
 const beforeLoad = (next: Function) => {
 	state.loadUHDImage = next
-	if (uhdLoadState[id]) {
-		showUHDImage()
-	}
+	uhdLoadState[id] && showUHDImage()
 }
 
 const onload = () => {
