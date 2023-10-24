@@ -16,18 +16,16 @@ const state = reactive({
 	showUHDOverlayer: true, // 显示UHD图片的浮层
 	previewVisible: false, // 显示图片预览
 	previewSrc: '', // 预览图片链接
+	uhdLoadState: {},
 }) as UnwrapNestedRefs<any>
 
-const uhdLoadState = reactive({}) as UnwrapNestedRefs<any>
-
 const resetState = () => {
+	id = Number(route.query.id)
 	state.loadingUHD = false
-	state.showUHDOverlayer = true
+	state.showUHDOverlayer = !state.uhdLoadState[id]
 }
 
 const loadData = () => {
-	id = Number(route.query.id)
-	state.showUHDOverlayer = !uhdLoadState[id]
 	state.data = imageStore.dataList.filter((item) => item.id === id)[0] || {}
 	headerStore.setBackBtnStatus(true)
 	if (state.data.id !== id) {
@@ -44,7 +42,6 @@ const loadData = () => {
 loadData()
 
 const showUHDImage = () => {
-	uhdLoadState[id] = true
 	state.loadingUHD = true
 	state.loadUHDImage()
 	state.showUHDOverlayer = false
@@ -52,10 +49,12 @@ const showUHDImage = () => {
 
 const beforeLoad = (next: Function) => {
 	state.loadUHDImage = next
-	uhdLoadState[id] && showUHDImage()
+	state.uhdLoadState[id] && showUHDImage()
 }
 
 const onload = () => {
+	// 加载完成后加入uhdLoadState
+	state.uhdLoadState[id] = true
 	state.loadingUHD = false
 }
 
