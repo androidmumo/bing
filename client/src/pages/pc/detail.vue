@@ -6,30 +6,31 @@ const route = useRoute()
 const imageStore = useImageStore()
 const headerStore = useHeaderStore()
 const { t } = useLanguage()
-let id = Number(route.query.id)
 
 const state = reactive({
-	data: {},
+	id: Number(route.query.id), // 图片id
+	data: {}, // 图片数据
 	loading: false, // 正在请求接口
 	loadUHDImage: () => {}, // 加载UHD图片
 	loadingUHD: false, // 正在加载UHD图片
 	showUHDOverlayer: true, // 显示UHD图片的浮层
 	previewVisible: false, // 显示图片预览
 	previewSrc: '', // 预览图片链接
-	uhdLoadState: {},
+	UHDLoadMap: {}, // 记录UHD图片是否加载过
 }) as UnwrapNestedRefs<any>
 
 const resetState = () => {
-	id = Number(route.query.id)
+	state.id = Number(route.query.id)
 	state.loadingUHD = false
-	state.showUHDOverlayer = !state.uhdLoadState[id]
+	state.showUHDOverlayer = !state.UHDLoadMap[state.id]
 }
 
 const loadData = () => {
+	const { id } = state
 	state.data = imageStore.dataList.filter((item) => item.id === id)[0] || {}
 	headerStore.setBackBtnStatus(true)
 	if (state.data.id !== id) {
-		// store中不存在这张图片的数据，需要请求接口
+		// 直接打开详情页，store中不存在这张图片的数据，需要请求接口
 		state.loading = true
 		getInfo({ id }).then((res) => {
 			state.data = res
@@ -49,12 +50,12 @@ const showUHDImage = () => {
 
 const beforeLoad = (next: Function) => {
 	state.loadUHDImage = next
-	state.uhdLoadState[id] && showUHDImage()
+	state.UHDLoadMap[state.id] && showUHDImage()
 }
 
 const onload = () => {
-	// 加载完成后加入uhdLoadState
-	state.uhdLoadState[id] = true
+	// 加载完成后加入UHDLoadMap
+	state.UHDLoadMap[state.id] = true
 	state.loadingUHD = false
 }
 
