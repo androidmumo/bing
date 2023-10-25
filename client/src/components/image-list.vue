@@ -70,7 +70,7 @@ const checkScrollForAutoLoad = () => {
 const debounceCheckScrollForAutoLoad = debounce(checkScrollForAutoLoad)
 
 // 第一次进入页面时检查一次是否需要加载
-debounceCheckScrollForAutoLoad()
+// debounceCheckScrollForAutoLoad()
 
 const listenScroll = () => {
 	window.addEventListener('scroll', debounceCheckScrollForAutoLoad, true)
