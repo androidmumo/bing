@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   axios:
     specifier: ^0.27.2
@@ -91,9 +87,6 @@ devDependencies:
   happy-dom:
     specifier: ^6.0.4
     version: 6.0.4
-  husky:
-    specifier: ^8.0.1
-    version: 8.0.1
   inferred-types:
     specifier: ^0.22.0
     version: 0.22.0
@@ -2960,12 +2953,6 @@ packages:
     engines: {node: '>=12.20.0'}
     dev: true
 
-  /husky@8.0.1:
-    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
-    engines: {node: '>=14'}
-    hasBin: true
-    dev: true
-
   /hyntax-yx@1.0.9:
     resolution: {integrity: sha512-T7HXVm1dEt6NFNQaYuzLfhyM+jiK1Z3elYUOz5ulf9fCG/vfJ+F51mPFaoBX4J1naaqIx82NCaVtK8L1oq5TwA==}
     engines: {node: '>=6.11.1', npm: '>=5.3.0'}
@@ -5649,3 +5636,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

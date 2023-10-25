@@ -23,7 +23,6 @@
     "analysis:build": "npx windicss-analysis --html dist",
     "lint": "eslint --ext .ts,.js,.jsx,.vue .",
     "lint:fix": "eslint --fix --ext .ts,.js,.jsx,.vue .",
-    "prepare": "husky install",
     "copy-dist": "node scripts/copyStatic.js"
   },
   "dependencies": {
@@ -60,7 +59,6 @@
     "fp-ts": "^2.12.1",
     "fs-extra": "^10.1.0",
     "happy-dom": "^6.0.4",
-    "husky": "^8.0.1",
     "inferred-types": "^0.22.0",
     "ityped": "^1.0.3",
     "lint-staged": "^13.0.3",
