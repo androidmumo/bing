@@ -21,18 +21,18 @@ const state = reactive({
 const imageList = ref()
 
 // 节流
-const reduceFn = (fn: Function, delay = 100) => {
-	let allowFlag = true
-	return () => {
-		if (allowFlag) {
-			allowFlag = false
-			fn.apply(this)
-			setTimeout(() => {
-				allowFlag = true
-			}, delay)
-		}
-	}
-}
+// const reduceFn = (fn: Function, delay = 100) => {
+// 	let allowFlag = true
+// 	return () => {
+// 		if (allowFlag) {
+// 			allowFlag = false
+// 			fn.apply(this)
+// 			setTimeout(() => {
+// 				allowFlag = true
+// 			}, delay)
+// 		}
+// 	}
+// }
 
 // 防抖
 const debounce = (fn: Function, delay = 100) => {

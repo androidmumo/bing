@@ -1,4 +1,4 @@
-client/dist
+dist
 node_modules
 .eslintcache
 version.json
@@ -7,7 +7,6 @@ version.json
 server/data/resources
 server/data/log
 server/data/config.js
-
 
 # local env files
 .env.local
