@@ -27,7 +27,7 @@ export default defineStore('useImageStore', () => {
 			currentPage: 1,
 		}
 		if (dataList?.length !== undefined) {
-			params.currentPage = dataList.length / params.pageSize + 1
+			params.currentPage = Math.floor(dataList.length / params.pageSize) + 1
 		} else {
 			params.currentPage = 1
 		}
