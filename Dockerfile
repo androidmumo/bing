@@ -9,13 +9,14 @@ RUN npm install pnpm -g && pnpm install
 COPY client .
 RUN pnpm build
 
-FROM node:18
+FROM alpine:latest
 
 WORKDIR /usr/src/app
 
+RUN apk add --no-cache --update nodejs npm
 COPY server/package*.json ./
 COPY server/pnpm-lock.yaml ./
-RUN npm install pnpm -g && pnpm install
+RUN npm install pnpm -g && pnpm install -P
 
 COPY server .
 
