@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const state = reactive({
-	loadStatus: {}, // 图片加载状态
+	loadMap: {}, // 图片加载状态
 	loadCount: 0, // 加载次数
 }) as UnwrapNestedRefs<any>
 
@@ -85,22 +85,21 @@ onDeactivated(() => {
 })
 
 const beforeLoad = (next: Function, index: number) => {
-	state.loadStatus[index] = {
+	state.loadMap[index] = {
 		status: false,
 		next,
 	}
 	if (index === 0) next()
-	if (
-		state.loadStatus[index - 1] &&
-		state.loadStatus[index - 1].status === true
-	) {
+	if (state.loadMap[index - 1] && state.loadMap[index - 1].status === true) {
 		next()
 	}
 }
 
 const onload = (index: number) => {
-	state.loadStatus[index].status = true
-	state.loadStatus[index + 1] && state.loadStatus[index + 1].next()
+	state.loadMap[index].status = true
+	nextTick(() => {
+		state.loadMap[index + 1] && state.loadMap[index + 1].next()
+	})
 }
 
 const clickImage = (item: any) => {
