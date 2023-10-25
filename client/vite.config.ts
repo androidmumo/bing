@@ -17,6 +17,10 @@ export default defineConfig({
 	server: {
 		//使用IP能访问
 		host: '0.0.0.0',
+		proxy: {
+			'/api': 'http://bingnext.mcloc.cn',
+			'/img': 'http://bingnext.mcloc.cn',
+		},
 	},
 	resolve: {
 		alias: {

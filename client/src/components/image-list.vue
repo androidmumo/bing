@@ -14,25 +14,25 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const state = reactive({
-	loadStatus: {}, // 图片加载状态
+	loadMap: {}, // 图片加载状态
 	loadCount: 0, // 加载次数
 }) as UnwrapNestedRefs<any>
 
 const imageList = ref()
 
 // 节流
-const reduceFn = (fn: Function, delay = 100) => {
-	let allowFlag = true
-	return () => {
-		if (allowFlag) {
-			allowFlag = false
-			fn.apply(this)
-			setTimeout(() => {
-				allowFlag = true
-			}, delay)
-		}
-	}
-}
+// const reduceFn = (fn: Function, delay = 100) => {
+// 	let allowFlag = true
+// 	return () => {
+// 		if (allowFlag) {
+// 			allowFlag = false
+// 			fn.apply(this)
+// 			setTimeout(() => {
+// 				allowFlag = true
+// 			}, delay)
+// 		}
+// 	}
+// }
 
 // 防抖
 const debounce = (fn: Function, delay = 100) => {
@@ -70,7 +70,7 @@ const checkScrollForAutoLoad = () => {
 const debounceCheckScrollForAutoLoad = debounce(checkScrollForAutoLoad)
 
 // 第一次进入页面时检查一次是否需要加载
-debounceCheckScrollForAutoLoad()
+// debounceCheckScrollForAutoLoad()
 
 const listenScroll = () => {
 	window.addEventListener('scroll', debounceCheckScrollForAutoLoad, true)
@@ -85,22 +85,21 @@ onDeactivated(() => {
 })
 
 const beforeLoad = (next: Function, index: number) => {
-	state.loadStatus[index] = {
+	state.loadMap[index] = {
 		status: false,
 		next,
 	}
 	if (index === 0) next()
-	if (
-		state.loadStatus[index - 1] &&
-		state.loadStatus[index - 1].status === true
-	) {
+	if (state.loadMap[index - 1] && state.loadMap[index - 1].status === true) {
 		next()
 	}
 }
 
 const onload = (index: number) => {
-	state.loadStatus[index].status = true
-	state.loadStatus[index + 1] && state.loadStatus[index + 1].next()
+	state.loadMap[index].status = true
+	nextTick(() => {
+		state.loadMap[index + 1] && state.loadMap[index + 1].next()
+	})
 }
 
 const clickImage = (item: any) => {
