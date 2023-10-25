@@ -99,11 +99,11 @@ const clickImage = (type: string) => {
 					></div>
 				</div>
 				<div class="container">
-					<div class="date">
-						{{ state.data?.date }}
-					</div>
 					<div class="title">
 						{{ state.data?.title }}
+					</div>
+					<div class="date">
+						{{ state.data?.date }}
 					</div>
 				</div>
 			</div>

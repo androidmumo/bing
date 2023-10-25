@@ -81,16 +81,17 @@
 			.container {
 				margin-right: 16px;
 
-				.date {
+				.title {
 					font-size: 32px;
 					font-weight: bold;
 					display: inline-block;
 					padding-right: 8px;
+					padding-bottom: 16px;
 					border-bottom: 3px solid #000000CC;
 					margin-bottom: 16px;
 				}
 
-				.title {
+				.date {
 					font-size: 16px;
 				}
 			}
@@ -166,7 +167,7 @@ html.dark {
 		.detail-image {
 			.image-content {
 				.container {
-					.date {
+					.title {
 						border-bottom: 3px solid #FFFFFFCC;
 					}
 				}
