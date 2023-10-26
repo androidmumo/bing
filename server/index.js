@@ -76,7 +76,7 @@ app.use((req, res, next) => {
   if (!needAuthUrl.includes(req.url)) return next();
   if (key && req.query?.key && req.query?.key === key) return next();
   return res.send({
-    message: 'key不正确',
+    message: 'key不正确或没有配置',
   })
 })
 
