@@ -1,7 +1,7 @@
 <div align="center">
-    <h1>必应每日一图</h1>
-    <p>每天更新一张图片（来源：必应）。诗曰：沉舟侧畔千帆过。一起来领略世界之美吧！</p>
-    <p>DEMO（基于此仓库实时部署）: https://bing.mcloc.cn</p>
+  <h1>必应每日一图</h1>
+  <p>每天更新一张图片（来源：必应）。诗曰：沉舟侧畔千帆过。一起来领略世界之美吧！</p>
+  <p>DEMO（基于此仓库实时部署）: https://bing.mcloc.cn</p>
 </div>
 
 
@@ -86,3 +86,11 @@ module.exports = {
 #### [服务端文档](./server/README.md)
 
 #### [前端文档](./client/README.md)
+
+
+
+### QQ交流群
+
+群号：665344121
+
+<img width="300px" src="doc/QQGroup.jpg" />
