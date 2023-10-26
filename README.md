@@ -33,7 +33,7 @@ docker镜像: https://hub.docker.com/r/androidmumo/bing
 
 1.参照以下模板在本地目录(如 `data`)中新建config.js文件
 
-```
+```javascript
 // 用户配置文件 config.js
 
 // 基础配置
@@ -42,7 +42,8 @@ const baseConfig = {
   updateTime: "00:01:00", // 每天更新时间 (开始从必应官方服务器下载图片的时间)
   DelayTime: 5, // 延迟时间（分钟） 即每天00:05：00的时候才显示当天的图片。性能较差的实例应适当调大此值 (仅针对'/api/getImage'接口)
   surviveDays: 90, // 图片存活天数（即图片保存多少天，到期即清理） 0为不清理
-  retryTimeout: 10000, // 错误重试间隔 (单位:ms)
+  retryTimeout: 10000, // 错误重试间隔。共重试10次，每次间隔时间递增，这里指的是首次间隔时间 (单位:ms)
+  key: 'abcdefgh', // 鉴权密钥。用于需要鉴权才能访问的接口
 };
 
 // 数据库配置 (注意：除数据库连接池大小外，以下配置项提及的内容需在安装前准备好并填入)
