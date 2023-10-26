@@ -13,8 +13,8 @@ const apiBaseConfig = {
 
 // API接口后缀配置(接口url后缀、首尾不能为’/‘)
 const apiConfig = {
-  UPDATE: "api/update", // 手动更新图片（仅开发模式可访问）
-  DELETE: "api/delete", // 手动清理图片（仅开发模式可访问）
+  UPDATE: "api/update", // 手动更新图片（需要key）
+  DELETE: "api/delete", // 手动清理图片（需要key）
   GET_IMAGE: "api/getImage", // 获取当天图片
   GET_LIST: "api/getList", // 获取图片列表
   GET_INFO: "api/getInfo", // 获取图片详情

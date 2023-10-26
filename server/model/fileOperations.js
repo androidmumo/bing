@@ -63,6 +63,7 @@ const downloadImage = function (imgUrl, saveUrl) {
     .catch((err) => {
       console.log(err);
       logger.error("图片下载失败 " + err);
+      eventBus.emit("on-error", "downloadImage");
     });
 };
 
@@ -79,6 +80,7 @@ function downloadImageSync(imgUrl, saveUrl) {
     });
     writeStream.on("error", (err) => {
       logger.error("图片下载失败 " + err);
+      eventBus.emit("on-error", "downloadImageSync");
       reject(err);
     });
     writeStream.on("finish", () => {

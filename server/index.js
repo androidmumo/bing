@@ -7,7 +7,7 @@ const {
 const { baseConfig } = require("./data/config");
 
 // 初始化配置项
-const { port, DelayTime } = baseConfig;
+const { port, DelayTime, key } = baseConfig;
 const { dir } = installConfig;
 const { static } = apiBaseConfig;
 const { UPDATE, DELETE, GET_IMAGE, GET_LIST, GET_INFO } = apiConfig;
@@ -68,8 +68,20 @@ app.use(express.static(distPath));
 // 跨域
 app.use(cors());
 
-// 开发环境api
-const allowApi = () => {
+app.use((req, res, next) => {
+  const needAuthUrl = [
+    `/${UPDATE}`,
+    `/${DELETE}`,
+  ]
+  if (!needAuthUrl.includes(req.url)) return next();
+  if (key && req.query?.key && req.query?.key === key) return next();
+  return res.send({
+    message: 'key不正确或没有配置',
+  })
+})
+
+// 需要鉴权的API
+const authApi = () => {
   // 更新图片
   app.get(`/${UPDATE}`, updateBingByChildProcess);
 
@@ -77,10 +89,11 @@ const allowApi = () => {
   app.get(`/${DELETE}`, deleteBingByChildProcess);
 }
 
-const args = process.argv.splice(2);
-if (args.includes('dev')) {
-  allowApi();
-}
+// const args = process.argv.splice(2);
+// if (args.includes('dev')) {
+//   authApi();
+// }
+authApi();
 
 const getImage = (req, res) => {
   const afterDelayTime = dayjs().subtract(DelayTime, 'minute');

@@ -8,7 +8,7 @@ const {
 const { baseConfig } = require("../data/config");
 
 // 初始化配置项
-const { retryTimeout } = baseConfig;
+const retryTimeout = baseConfig.retryTimeout || 10000;
 const { dir, databaseTable } = installConfig;
 const { static } = apiBaseConfig;
 
@@ -56,6 +56,10 @@ const updateBing = async function () {
   logger.info("保存目录: " + saveDir);
   // 获取bing官方数据
   let bingJson = await getBingJson();
+  // 校验bingJson
+  if (!(bingJson.images && bingJson.images[0])) {
+    return retry();
+  }
   // 创建目录
   await createDirectorySync(saveDir, true);
   // 下载图片
@@ -119,19 +123,23 @@ const updateBing = async function () {
     logger.info("成功");
     // res.send("成功");
   } else {
-    if (retryTime >= 3) {
-      retryTime = 0;
-      logger.error("失败 " + errorList);
-      return;
-    }
-    retryTime++;
-    logger.error("发生了错误,正在重试中 次数: " + retryTime);
-    errorList = [];
-    setTimeout(function () {
-      updateBing();
-    }, retryTimeout);
+    retry();
   }
 };
+
+const retry = () => {
+  if (retryTime >= 10) {
+    retryTime = 0;
+    logger.error("失败 " + errorList);
+    return;
+  }
+  retryTime++;
+  logger.error("发生了错误,正在重试中 次数: " + retryTime);
+  errorList = [];
+  setTimeout(function () {
+    updateBing();
+  }, retryTimeout * retryTime);
+}
 
 // run
 updateBing();
