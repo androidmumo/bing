@@ -8,8 +8,8 @@ dependencies:
     specifier: ^1.11.5
     version: 1.11.5
   pmage:
-    specifier: ^0.2.11
-    version: 0.2.11
+    specifier: ^0.3.1
+    version: 0.3.1
   vant:
     specifier: ^3.6.2
     version: 3.6.2(vue@3.2.37)
@@ -4099,8 +4099,8 @@ packages:
       v8flags: 4.0.0
     dev: true
 
-  /pmage@0.2.11:
-    resolution: {integrity: sha512-hhqJUZwO92Dcp8dPo7rR6hNL9of0biaxlNed3nXV6qqgEU+/D2KCDbOtzWj1Rw2yxaxPkdGBhBjftTcg2K1v4g==}
+  /pmage@0.3.1:
+    resolution: {integrity: sha512-Nrp60Td5knzdF/bcwVWz+52CudOemz6GkEgUrunTjfoj4Rcvy+p0r9cOrJUjJ9v2s1Ju5HJvEPaawek1mJa7Tg==}
     dependencies:
       vue: 3.2.37
     dev: false

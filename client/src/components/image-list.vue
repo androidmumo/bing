@@ -102,6 +102,13 @@ const onload = (index: number) => {
 	})
 }
 
+const onerror = (index: number) => {
+	state.loadMap[index].status = false
+	nextTick(() => {
+		state.loadMap[index + 1] && state.loadMap[index + 1].next()
+	})
+}
+
 const clickImage = (item: any) => {
 	emit('click-image', item)
 }
@@ -127,6 +134,7 @@ const clickImage = (item: any) => {
 				class="image"
 				@before-load="(next: Function) => beforeLoad(next, index)"
 				@onload="onload(index)"
+				@onerror="onerror(index)"
 			/>
 			<slot name="content" :data="item"></slot>
 		</div>
