@@ -29,7 +29,15 @@
 
 docker镜像: https://hub.docker.com/r/androidmumo/bing
 
-#### 部署步骤
+
+
+#### [在1Panel上部署](./doc/deploy.md)
+
+
+
+#### 通用部署步骤
+
+以下是适用于安装有Docker的环境的通用部署方式:
 
 1.参照以下模板在本地目录(如 `data`)中新建config.js文件
 
