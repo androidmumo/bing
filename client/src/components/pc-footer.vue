@@ -24,11 +24,16 @@ state.compileTime = dayjs(versionJSON.compileTime).format('YYYY-MM-DD HH:mm:ss')
 				v-for="(item, index) in webInfoStore.webInfo.link"
 				:key="index"
 				class="link-item"
+				target="_blank"
 				:href="item.url"
 			>
 				{{ item.label }}
 			</a>
-			<a class="link-item" href="https://github.com/androidmumo/bing">
+			<a
+				class="link-item"
+				target="_blank"
+				href="https://github.com/androidmumo/bing"
+			>
 				<i-mdi:github class="link-item-icon" />GitHub
 			</a>
 		</div>
