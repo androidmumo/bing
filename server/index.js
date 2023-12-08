@@ -10,7 +10,7 @@ const { baseConfig } = require("./data/config");
 const { port, DelayTime, key } = baseConfig;
 const { dir } = installConfig;
 const { static } = apiBaseConfig;
-const { UPDATE, DELETE, GET_IMAGE, GET_LIST, GET_INFO } = apiConfig;
+const { UPDATE, DELETE, GET_IMAGE, GET_LIST, GET_INFO, GET_WEBINFO } = apiConfig;
 
 // 导入模块
 const { logger } = require("./model/log4js"); // 日志模块
@@ -29,6 +29,7 @@ const cors = require("cors");
 // 导入api
 const { getList } = require("./api/getList");
 const { getInfo } = require("./api/getInfo");
+const { getWebInfo } = require("./api/getWebInfo");
 
 // 使用express框架
 const express = require("express");
@@ -112,6 +113,7 @@ app.get('/', (req, res) => {
 app.get(`/${GET_IMAGE}`, getImage); // 获取当天图片
 app.get(`/${GET_LIST}`, getList); // 获取图片列表
 app.get(`/${GET_INFO}`, getInfo); // 获取图片详情
+app.get(`/${GET_WEBINFO}`, getWebInfo); // 获取网站信息
 // ------ 接口 end------
 
 // 开始监听

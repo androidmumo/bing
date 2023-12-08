@@ -18,6 +18,7 @@ const apiConfig = {
   GET_IMAGE: "api/getImage", // 获取当天图片
   GET_LIST: "api/getList", // 获取图片列表
   GET_INFO: "api/getInfo", // 获取图片详情
+  GET_WEBINFO: "api/getWebInfo", // 获取网站信息
 };
 
 module.exports = {

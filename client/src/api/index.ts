@@ -24,4 +24,12 @@ const getInfo = (params: { id: number }) => {
 	}).then((response) => response.data.info)
 }
 
-export { getList, getInfo }
+// 获取网站信息
+const getWebInfo = () => {
+	return http({
+		method: 'get',
+		url: '/api/getWebInfo',
+	}).then((response) => response.data)
+}
+
+export { getList, getInfo, getWebInfo }

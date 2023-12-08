@@ -1,17 +1,18 @@
 <div align="center">
   <h1>必应每日一图</h1>
   <p>每天更新一张图片（来源：必应）。诗曰：沉舟侧畔千帆过。一起来领略世界之美吧！</p>
-  <p>DEMO（基于此仓库实时部署）: https://bing.mcloc.cn</p>
+  <p>DEMO: https://bing.mcloc.cn</p>
 </div>
 
 
-### 预览
+
+### 1.预览
 
 ![image](doc/image.png)
 
 
 
-### 特点
+### 2.特点
 
 必应搜索每天会更新一张高质量的图片，用来做壁纸再好不过了，每天都有新心情。
 
@@ -23,7 +24,7 @@
 
 
 
-## Docker部署
+## 3.Docker部署
 
 本项目提供了Docker版本。现在，您无需关注前后端如何部署。只需要简单的启动Docker镜像，即可拥有完全由您自己控制的服务。
 
@@ -31,15 +32,15 @@ docker镜像: https://hub.docker.com/r/androidmumo/bing
 
 
 
-#### [在1Panel上部署](./doc/deploy.md)
+#### 3.1.[在1Panel上部署](./doc/deploy.md)
 
 
 
-#### 通用部署步骤
+#### 3.2.通用部署步骤
 
 以下是适用于安装有Docker的环境的通用部署方式:
 
-1.参照以下模板在本地目录(如 `data`)中新建config.js文件
+(1)参照以下模板在本地目录(如 `data`)中新建config.js文件
 
 ```javascript
 // 用户配置文件 config.js
@@ -64,18 +65,41 @@ const databaseConfig = {
   connectionLimit: 100, // 数据库连接池大小
 };
 
+// 网站信息配置
+const infoConfig = {
+  link: [
+    {
+      label: "白馬空谷的主页", // 链接名称
+      url: "https://www.mcloc.cn/" // 链接地址
+    },
+    {
+      label: "白馬空谷的博客",
+      url: "https://blog.mcloc.cn/"
+    }
+  ],
+  htmlSlot: {
+    beforeFooter: ``, // 页脚上方HTML插槽
+    afterFooter: `<a style="margin-right: 10px;" target="_blank" href="https://beian.miit.gov.cn/">晋ICP备20001086号-1</a>
+  <a style="margin-right: 10px; display: flex; align-items: center;" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41080202000141">
+    <img style="width: 14px; margin-right: 6px;" src="https://www.mcloc.cn/wp-content/uploads/2020/04/beiantubiao-19.png"/>
+    <span>豫公网安备 41080202000141号</span>
+  </a>` // 页脚下方HTML插槽
+  }
+}
+
 module.exports = {
   baseConfig,
   databaseConfig,
+  infoConfig,
 };
 
 ```
 
-2.映射目录: 本地目录( `data` ) > 容器目录( `/usr/src/app/data` )
+(2)映射目录: 本地目录( `data` ) > 容器目录( `/usr/src/app/data` )
 
-3.映射端口: 本地端口(如80) > 容器端口(默认为3000)
+(3)映射端口: 本地端口(如80) > 容器端口(默认为3000)
 
-4.启动容器。
+(4)启动容器。
 
 
 
@@ -89,15 +113,23 @@ module.exports = {
 
 
 
-### 其他文档
+### 4.其他文档
 
-#### [服务端文档](./server/README.md)
+#### 4.1.[服务端文档](./server/README.md)
 
-#### [前端文档](./client/README.md)
+#### 4.2.[前端文档](./client/README.md)
 
 
 
-### QQ交流群
+### 5.赞助与反馈
+
+#### 5.1.赞助
+
+爱发电：https://afdian.net/a/bingImage
+
+<img width="300px" src="doc/afdian-[未认证]白馬空谷.jpeg" />
+
+#### 5.2.QQ交流群
 
 群号：665344121
 
