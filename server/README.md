@@ -44,9 +44,32 @@ const databaseConfig = {
   connectionLimit: 100, // 数据库连接池大小
 };
 
+// 网站信息配置
+const infoConfig = {
+  link: [
+    {
+      label: "白馬空谷的主页", // 链接名称
+      url: "https://www.mcloc.cn/" // 链接地址
+    },
+    {
+      label: "白馬空谷的博客",
+      url: "https://blog.mcloc.cn/"
+    }
+  ],
+  htmlSlot: {
+    beforeFooter: ``, // 页脚上方HTML插槽
+    afterFooter: `<a style="margin-right: 10px;" target="_blank" href="https://beian.miit.gov.cn/">晋ICP备20001086号-1</a>
+  <a style="margin-right: 10px; display: flex; align-items: center;" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41080202000141">
+    <img style="width: 14px; margin-right: 6px;" src="https://www.mcloc.cn/wp-content/uploads/2020/04/beiantubiao-19.png"/>
+    <span>豫公网安备 41080202000141号</span>
+  </a>` // 页脚下方HTML插槽
+  }
+}
+
 module.exports = {
   baseConfig,
   databaseConfig,
+  infoConfig,
 };
 ```
 
@@ -76,8 +99,8 @@ const apiBaseConfig = {
 
 // API接口路径配置(接口url后缀、首尾不能为’/‘)
 const apiConfig = {
-  UPDATE: "api/update", // 手动更新图片（仅开发模式可访问）
-  DELETE: "api/delete", // 手动清理图片（仅开发模式可访问）
+  UPDATE: "api/update", // 手动更新图片（访问需要key鉴权）
+  DELETE: "api/delete", // 手动清理图片（访问需要key鉴权）
   GET_IMAGE: "api/getImage", // 获取当天图片
   GET_LIST: "api/getList", // 获取图片列表
   GET_INFO: "api/getInfo", // 获取图片详情
