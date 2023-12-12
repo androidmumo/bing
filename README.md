@@ -127,7 +127,7 @@ module.exports = {
 
 爱发电：https://afdian.net/a/bingImage
 
-<img width="300px" src="doc/afdian-[未认证]白馬空谷.jpeg" />
+<img width="300px" src="doc/afdian-白馬空谷.jpeg" />
 
 #### 5.2.QQ交流群
 
