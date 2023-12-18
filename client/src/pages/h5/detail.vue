@@ -103,7 +103,7 @@ const clickImage = (type: string) => {
 						{{ state.data?.title }}
 					</div>
 					<div class="date">
-						{{ state.data?.date }}
+						{{ state.data?.date }} {{ state.data?.copyright }}
 					</div>
 				</div>
 			</div>

@@ -125,6 +125,8 @@ module.exports = {
 
 #### 5.1.赞助
 
+赞助可加核心用户群（微信群）。赞助后请联系QQ：619874503
+
 爱发电：https://afdian.net/a/bingImage
 
 <img width="300px" src="doc/afdian-白馬空谷.jpeg" />

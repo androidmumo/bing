@@ -17,6 +17,7 @@ const { logger } = require("./model/log4js"); // 日志模块
 const { eventBus } = require("./model/eventBus"); // 事件总线
 const { startUpdateJob } = require("./model/cron"); // 定时任务
 const { install } = require("./model/install"); // 初始化数据库
+const { upgrade } = require("./model/upgrade"); // 程序升级
 
 // 原生模块
 const childProcess = require("child_process");
@@ -36,9 +37,6 @@ const express = require("express");
 const app = new express();
 
 // ------ 逻辑代码 start------
-// 初始化数据库
-install();
-
 // 用子进程更新图片
 const updateBingByChildProcess = function () {
   childProcess.fork("./model/update.js");
@@ -56,8 +54,19 @@ eventBus.on("to-update", () => {
   deleteBingByChildProcess();
 });
 
-// 首次运行时更新图片
-updateBingByChildProcess();
+// 主函数
+const main = async () => {
+  // 初始化数据库
+  await install();
+
+  // 程序升级
+  await upgrade();
+
+  // 首次运行时更新图片
+  updateBingByChildProcess();
+}
+
+main();
 // ------ 逻辑代码 end------
 
 // ------ 接口 start------
@@ -70,6 +79,7 @@ app.use(express.static(distPath));
 app.use(cors());
 
 app.use((req, res, next) => {
+  // 需要鉴权的URL
   const needAuthUrl = [
     `/${UPDATE}`,
     `/${DELETE}`,
