@@ -92,9 +92,10 @@ const updateBing = async function () {
     WHERE date='${dayjs().format("YYYY-MM-DD")}'`;
   const SQL_INSERT = `
         INSERT INTO ${databaseTable}
-          (title, date, base64, url, color)
+          (title, copyright, date, base64, url, color)
         VALUES
-          ('${bingJson.images[0].copyright}',
+          ('${bingJson.images[0].title}',
+          '${bingJson.images[0].copyright}',
           '${dayjs().format("YYYY-MM-DD")}',
           '${imageBase64}',
           '${JSON.stringify(urlObj)}',
@@ -102,7 +103,8 @@ const updateBing = async function () {
     `;
   const SQL_UPDATE = `
         UPDATE ${databaseTable} SET
-          title='${bingJson.images[0].copyright}',
+          title='${bingJson.images[0].title}',
+          copyright='${bingJson.images[0].copyright}',
           base64='${imageBase64}',
           url='${JSON.stringify(urlObj)}',
           color='${JSON.stringify(mainColor)}'

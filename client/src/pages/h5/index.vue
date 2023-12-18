@@ -77,7 +77,7 @@ const setScrollTop = () => {
 							{{ isToday(data?.date) ? t('index.today') : data?.date }}
 						</span>
 						<span>
-							{{ data?.title }}
+							{{ data?.title || data?.copyright }}
 						</span>
 					</div>
 				</div>
