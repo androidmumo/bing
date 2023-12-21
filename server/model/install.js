@@ -14,7 +14,6 @@ const SQL_INIT_DATA = `
     CREATE TABLE IF NOT EXISTS ${databaseTable}(
       id INT UNSIGNED AUTO_INCREMENT,
       title VARCHAR(1000),
-      copyright VARCHAR(1000),
       date VARCHAR(100),
       base64 VARCHAR(10000),
       url JSON,
