@@ -30,7 +30,7 @@ OpenResty 是一个基于 Nginx 的高性能 Web 应用服务器，可以帮我�
 
 在创建容器之前，我们需要新建一个目录，用于存放图片以及配置文件。
 
-进入1Panel的【主机】-【文件】，在 `/opt` 目录下新建文件夹 `/bing` （当然，您可以选择其他位置，只要有可写权限即可）。然后新建一个空白的 `config.js` 文件，将 [config-full.js](https://github.com/androidmumo/bing/blob/main/server/data/config-full.js) 中的内容复制到此文件中。
+进入1Panel的【主机】-【文件】，在 `/opt` 目录下新建文件夹 `/bing` （当然，您可以选择其他位置，只要有可写权限即可）。然后在此目录下新建一个空白的 `config.js` 文件，将 [config-full.js](https://github.com/androidmumo/bing/blob/main/server/data/config-full.js) 中的内容复制到此文件中。
 
 现在，您需要用保存备用的数据库连接信息，修改此配置文件，各配置项的含义已经标明，请填写正确。
 
