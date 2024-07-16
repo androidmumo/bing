@@ -131,6 +131,12 @@ module.exports = {
 
 <img width="300px" src="doc/afdian-白馬空谷.jpeg" />
 
+感谢以下用户的赞助：
+
+Ajiro、爱发电用户_58Gh
+
+
+
 #### 5.2.QQ交流群
 
 群号：665344121
