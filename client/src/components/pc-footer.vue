@@ -37,7 +37,11 @@ state.compileTime = dayjs(versionJSON.compileTime).format('YYYY-MM-DD HH:mm:ss')
 				<i-mdi:github class="link-item-icon" />GitHub
 			</a>
 		</div>
-		<div class="copyright">Copyright © 2022 mcloc.cn</div>
+		<div
+			v-if="webInfoStore.webInfo.copyright"
+			class="copyright"
+			v-html="webInfoStore.webInfo.copyright"
+		></div>
 		<div class="build-time">
 			{{ `${t('footer.buildTime')}: ${state.compileTime}` }}
 		</div>

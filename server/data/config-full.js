@@ -32,6 +32,7 @@ const infoConfig = {
       url: "https://blog.mcloc.cn/"
     }
   ],
+  copyright: `Copyright © 2020-2024 mcloc.cn@白馬空谷`, // 版权信息
   htmlSlot: {
     beforeFooter: ``, // 页脚上方HTML插槽
     afterFooter: `<a style="margin-right: 10px;" target="_blank" href="https://beian.miit.gov.cn/">晋ICP备20001086号-1</a>

@@ -6,6 +6,7 @@ export default defineStore('useWebInfoStore', {
 		return {
 			webInfo: {
 				link: <any>[],
+				copyright: '',
 				htmlSlot: {
 					beforeFooter: '',
 					afterFooter: '',
