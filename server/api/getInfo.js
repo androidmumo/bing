@@ -12,7 +12,7 @@ const { operateDb } = require("../model/conn"); // 数据库模块
 
 const { reduceRes } = require("../utils/reduceRes");
 
-// 获取图片列表
+// 获取图片详情
 const getInfo = (req, res) => {
 	// sql注入过滤
 	let id = isNaN(parseInt(req.query?.id))
