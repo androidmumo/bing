@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY client/package*.json ./
 COPY client/pnpm-lock.yaml ./
-RUN npm install pnpm -g && pnpm install
+RUN npm install pnpm@8 -g && pnpm install
 
 COPY client .
 RUN pnpm build
@@ -17,7 +17,7 @@ RUN apk add --no-cache --update nodejs npm tzdata
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
 COPY server/package*.json ./
 COPY server/pnpm-lock.yaml ./
-RUN npm install pnpm -g && pnpm install -P
+RUN npm install pnpm@8 -g && pnpm install -P
 
 COPY server .
 
