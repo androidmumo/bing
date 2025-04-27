@@ -11,7 +11,7 @@ const { dir, databaseTable } = installConfig;
 // 导入模块
 const { logger } = require("./log4js"); // 日志模块
 const { operateDb } = require("./conn"); // 数据库模块
-const { delDirectory } = require("./fileOperations"); // 文件操作模块
+const { delDirectory, rmEmptyDir } = require("./fileOperations"); // 文件操作模块
 const { eventBus } = require("./eventBus"); // 事件总线
 
 // 第三方模块
@@ -33,6 +33,9 @@ const deleteExpired = async () => {
 
 	// 删除图片
 	delDirectory(expiredDir);
+
+	// 删除空目录
+	rmEmptyDir(dir);
 
 	// 清理数据库数据
 	const SQL_DELETE = `DELETE FROM ${databaseTable} WHERE date='${expiredDate.format("YYYY-MM-DD")}';`
