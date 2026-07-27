@@ -3,6 +3,7 @@
 // 安装配置
 const installConfig = {
   databaseVersion: 1,
+  databaseFile: process.env.DATABASE_FILE || "data/bing.sqlite", // SQLite 数据库文件 (相对于服务端根目录)
   dir: "data/resources", // 图片在服务端的真实保存路径 (相对于根目录、首尾不能为’/‘)
   databaseTable: "bing", // 数据库表名-数据 (可在安装前更改)
   databaseTableInfo: "info", // 数据库表名-信息 (可在安装前更改)

@@ -32,9 +32,9 @@ const getList = (req, res) => {
   SELECT *
   FROM ${databaseTable}
   ORDER BY id DESC
-  LIMIT ${pageSize} OFFSET ${currentPage * pageSize};`;
+  LIMIT ? OFFSET ?;`;
 	const SQL_GET_TOTLE = `SELECT COUNT(*) totle FROM ${databaseTable};`;
-	const list = operateDb(SQL_GET_LIST, null);
+	const list = operateDb(SQL_GET_LIST, [pageSize, currentPage * pageSize]);
 	const totle = operateDb(SQL_GET_TOTLE, null);
 	Promise.all([totle, list])
 		.then((values) => {

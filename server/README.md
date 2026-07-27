@@ -6,8 +6,8 @@
 
 ### 环境准备
 
-- 本项目基于 `Node.js 14` 开发，建议运行环境的Node版本大于此版本
-- MySql
+- Node.js 24 或更高版本
+- 数据使用内置 SQLite 保存，无需安装 MySQL/MariaDB
 
 
 
@@ -19,7 +19,7 @@
 
 这个配置文件中的配置项可以由用户自定义。
 
-请复制完整配置文件 `data/config-full.js` 中的内容并创建 `data/config.js` 。用户配置文件中包含了基础配置和数据库配置。
+请复制完整配置文件 `data/config-full.js` 中的内容并创建 `data/config.js` 。SQLite 数据库会在首次启动时自动创建为 `data/bing.sqlite`。
 
 ```javascript
 // 用户配置文件 config.js
@@ -32,16 +32,6 @@ const baseConfig = {
   surviveDays: 90, // 图片存活天数（即图片保存多少天，到期即清理） 0为不清理
   retryTimeout: 10000, // 错误重试间隔。共重试10次，每次间隔时间递增，这里指的是首次间隔时间 (单位:ms)
   key: 'abcdefgh', // 鉴权密钥。用于需要鉴权才能访问的接口
-};
-
-// 数据库配置 (注意：除数据库连接池大小外，以下配置项提及的内容需在安装前准备好并填入)
-const databaseConfig = {
-  host: "127.0.0.1", // 数据库链接地址
-  port: "3306", // 数据库连接端口
-  database: "bing", // 数据库名
-  user: "bing", // 数据库用户名
-  password: "bing", // 数据库密码
-  connectionLimit: 100, // 数据库连接池大小
 };
 
 // 网站信息配置
@@ -68,7 +58,6 @@ const infoConfig = {
 
 module.exports = {
   baseConfig,
-  databaseConfig,
   infoConfig,
 };
 ```
@@ -88,8 +77,11 @@ module.exports = {
 
 // 安装配置
 const installConfig = {
+  databaseVersion: 1,
+  databaseFile: "data/bing.sqlite", // SQLite 数据库文件
   dir: "data/resources", // 图片在服务端的真实保存路径 (相对于根目录、首尾不能为’/‘)
-  databaseTable: "bing", // 数据库表名 (可在安装前更改)
+  databaseTable: "bing", // 数据库表名-数据 (可在安装前更改)
+  databaseTableInfo: "info", // 数据库表名-信息 (可在安装前更改)
 }
 
 // API基础配置
@@ -139,6 +131,16 @@ npm run serve
 ```
 npm run dev
 ```
+
+### 从旧 MySQL 迁移（可选）
+
+先将旧 `bing` 表导出为 JSON 数组，再在服务端目录执行：
+
+```
+pnpm import:mysql /path/to/bing-export.json
+```
+
+每条记录可包含 `id`、`title`、`copyright`、`date`、`base64`、`url`、`color` 和 `timestamp`。导入会保留原 ID；重复日期会更新已有记录。迁移完成后，运行服务不再需要旧 MySQL。
 
 
 
@@ -262,4 +264,3 @@ http://localhost:3000/api/getInfo?id=1
     }
 }
 ```
-

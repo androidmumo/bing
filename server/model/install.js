@@ -11,25 +11,24 @@ const { operateDb } = require("./conn"); // 数据库模块
 const { logger } = require("./log4js"); // 日志模块
 
 const SQL_INIT_DATA = `
-    CREATE TABLE IF NOT EXISTS ${databaseTable}(
-      id INT UNSIGNED AUTO_INCREMENT,
-      title VARCHAR(1000),
-      date VARCHAR(100),
-      base64 VARCHAR(10000),
-      url JSON,
-      color JSON,
-      timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-      PRIMARY KEY ( id )
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    CREATE TABLE IF NOT EXISTS ${databaseTable} (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT,
+      copyright TEXT,
+      date TEXT NOT NULL UNIQUE,
+      base64 TEXT,
+      url TEXT,
+      color TEXT,
+      timestamp TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
   `;
 
 const SQL_INIT_INFO = `
-  CREATE TABLE IF NOT EXISTS ${databaseTableInfo}(
-    id INT UNSIGNED AUTO_INCREMENT,
-    version VARCHAR(1000),
-    timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY ( id )
-  )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CREATE TABLE IF NOT EXISTS ${databaseTableInfo} (
+    id INTEGER PRIMARY KEY,
+    version INTEGER NOT NULL,
+    timestamp TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
 `;
 
 async function install() {

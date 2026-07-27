@@ -88,38 +88,29 @@ const updateBing = async function () {
     thumbnail: `${baseImgUrl}_hd_thumbnail_480_270.jpg`,
     gaussian: `${baseImgUrl}_hd_gaussian_20.jpg`,
   };
-  const SQL_CHECK = `SELECT * FROM ${databaseTable}
-    WHERE date='${dayjs().format("YYYY-MM-DD")}'`;
-  const SQL_INSERT = `
-        INSERT INTO ${databaseTable}
-          (title, copyright, date, base64, url, color)
-        VALUES
-          ('${bingJson.images[0].title}',
-          '${bingJson.images[0].copyright}',
-          '${dayjs().format("YYYY-MM-DD")}',
-          '${imageBase64}',
-          '${JSON.stringify(urlObj)}',
-          '${JSON.stringify(mainColor)}');
-    `;
-  const SQL_UPDATE = `
-        UPDATE ${databaseTable} SET
-          title='${bingJson.images[0].title}',
-          copyright='${bingJson.images[0].copyright}',
-          base64='${imageBase64}',
-          url='${JSON.stringify(urlObj)}',
-          color='${JSON.stringify(mainColor)}'
-        WHERE date='${dayjs().format("YYYY-MM-DD")}'
-    `;
-  // 写入数据库
-  if ((await operateDb(SQL_CHECK, null)).data.length === 0) {
-    await operateDb(SQL_INSERT, null).then((result) => {
-      logger.info("数据库-写入成功");
-    });
-  } else {
-    await operateDb(SQL_UPDATE, null).then((result) => {
-      logger.info("数据库-更新成功");
-    });
-  }
+  const SQL_UPSERT = `
+    INSERT INTO ${databaseTable}
+      (title, copyright, date, base64, url, color)
+    VALUES (?, ?, ?, ?, ?, ?)
+    ON CONFLICT(date) DO UPDATE SET
+      title = excluded.title,
+      copyright = excluded.copyright,
+      base64 = excluded.base64,
+      url = excluded.url,
+      color = excluded.color,
+      timestamp = CURRENT_TIMESTAMP;
+  `;
+  const sqlParams = [
+    bingJson.images[0].title,
+    bingJson.images[0].copyright,
+    dayjs().format("YYYY-MM-DD"),
+    imageBase64,
+    JSON.stringify(urlObj),
+    JSON.stringify(mainColor),
+  ];
+  await operateDb(SQL_UPSERT, sqlParams).then(() => {
+    logger.info("数据库-写入成功");
+  });
   // 重试逻辑
   if (errorList.length === 0) {
     logger.info("成功");

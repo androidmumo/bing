@@ -14,15 +14,11 @@
 
 #### 环境准备
 
-我们现在假设你有一个可用的1Panel面板。首先登录1Panel面板（成文时1Panel版本为v1.7.4），进入【应用商店】，安装 `OpenResty` 和 `MariaDB` 。
+我们现在假设你有一个可用的1Panel面板。首先登录1Panel面板，按需安装 `OpenResty` 用于反向代理。
 
 ![app](./deploy/app.png)
 
-OpenResty 是一个基于 Nginx 的高性能 Web 应用服务器，可以帮我们创建反向代理网站。数据库除了可以选用MariaDB外，还可以选用MySQL等兼容的数据库。
-
-数据库安装好后，进入1Panel的【数据库】，点击【创建数据库】。根据提示新建一个数据库，保存数据库名、数据库用户名、数据库密码备用。
-
-需要注意的是，在容器中连接此数据库用的地址不是 `127.0.0.1:3306` ，而是 `mariadb:3306` ，点击1Panel数据库管理页面的【连接信息】可以看到详细信息。连接地址也保存备用。
+OpenResty 是一个基于 Nginx 的高性能 Web 应用服务器，可以帮我们创建反向代理网站。本项目已内置 SQLite，无需安装或配置 MySQL/MariaDB。
 
 
 
@@ -32,7 +28,7 @@ OpenResty 是一个基于 Nginx 的高性能 Web 应用服务器，可以帮我�
 
 进入1Panel的【主机】-【文件】，在 `/opt` 目录下新建文件夹 `/bing` （当然，您可以选择其他位置，只要有可写权限即可）。然后在此目录下新建一个空白的 `config.js` 文件，将 [config-full.js](https://github.com/androidmumo/bing/blob/main/server/data/config-full.js) 中的内容复制到此文件中。
 
-现在，您需要用保存备用的数据库连接信息，修改此配置文件，各配置项的含义已经标明，请填写正确。
+根据注释修改此配置文件即可。数据库会在容器首次启动时自动创建。
 
 这里把文件的内容贴到下方：
 
@@ -47,16 +43,6 @@ const baseConfig = {
   surviveDays: 90, // 图片存活天数（即图片保存多少天，到期即清理） 0为不清理
   retryTimeout: 10000, // 错误重试间隔。共重试10次，每次间隔时间递增，这里指的是首次间隔时间 (单位:ms)
   key: 'abcdefgh', // 鉴权密钥。用于需要鉴权才能访问的接口
-};
-
-// 数据库配置 (注意：除数据库连接池大小外，以下配置项提及的内容需在安装前准备好并填入)
-const databaseConfig = {
-  host: "mariadb", // 数据库链接地址
-  port: "3306", // 数据库连接端口
-  database: "bing", // 数据库名
-  user: "bing", // 数据库用户名
-  password: "bing", // 数据库密码
-  connectionLimit: 100, // 数据库连接池大小
 };
 
 // 网站信息配置
@@ -83,7 +69,6 @@ const infoConfig = {
 
 module.exports = {
   baseConfig,
-  databaseConfig,
   infoConfig,
 };
 ```
@@ -118,7 +103,7 @@ module.exports = {
 
 网络部分选择任一bridge网络，如 `1panel-network` 即可。
 
-挂载部分选择【本机目录】，本机目录填写刚刚新建的目录 `/opt/bing` ，权限为读写，容器目录请填写 `/usr/src/app/data` 。
+挂载部分选择【本机目录】，本机目录填写刚刚新建的目录 `/opt/bing` ，权限为读写，容器目录请填写 `/usr/src/app/data` 。图片和 SQLite 数据库文件 `bing.sqlite` 都会持久化在此目录。
 
 ![createDocker2.png](./deploy/createDocker2.png)
 

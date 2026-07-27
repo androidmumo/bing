@@ -13,15 +13,11 @@ const { logger } = require("./log4js"); // 日志模块
 const { operateDb } = require("./conn"); // 数据库模块
 
 const upgrade0to1 = async () => {
-	const changeFieldSQL = `ALTER TABLE ${databaseTable} CHANGE title copyright VARCHAR(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL;`
-	const changeField = await operateDb(changeFieldSQL, null);
-	const addFieldSQL = `ALTER TABLE ${databaseTable} ADD title VARCHAR(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL AFTER id;`
-	const addField = await operateDb(addFieldSQL, null);
-	logger.info('数据库升级结果', changeField, addField);
-}
+	logger.info("SQLite 数据库结构已初始化");
+};
 
 // 步进更新程序
-stepUpgradeList = {
+const stepUpgradeList = {
 	'0>1': upgrade0to1,
 }
 
@@ -61,11 +57,13 @@ const setCurrentVersion = async () => {
 	const SQL_GET_INFO = `SELECT * FROM ${databaseTableInfo}`;
 	const list = await operateDb(SQL_GET_INFO, null);
 	if (Array.isArray(list.data) && list.data.length === 0) {
-		const createSQL = `INSERT INTO ${databaseTableInfo} (id, version) VALUES ('1', '1')`;
-		return await operateDb(createSQL, null);
+		const createSQL = `INSERT INTO ${databaseTableInfo} (id, version) VALUES (?, ?)`;
+		return await operateDb(createSQL, [1, latestVersion]);
 	}
-	const updateSQL = `UPDATE ${databaseTableInfo} SET version='${latestVersion}' WHERE id='1'`;
-	return await operateDb(updateSQL, null);
+	const updateSQL = `UPDATE ${databaseTableInfo}
+		SET version = ?, timestamp = CURRENT_TIMESTAMP
+		WHERE id = ?`;
+	return await operateDb(updateSQL, [latestVersion, 1]);
 }
 
 const upgrade = async () => {

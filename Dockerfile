@@ -1,4 +1,4 @@
-FROM node:18 as builder
+FROM node:24-alpine AS builder
 
 WORKDIR /usr/src/app
 
@@ -9,13 +9,13 @@ RUN npm install pnpm@8 -g && pnpm install
 COPY client .
 RUN pnpm build
 
-FROM alpine:latest
+FROM node:24-alpine
 
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache --update nodejs npm tzdata
+RUN apk add --no-cache --update tzdata
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
-COPY server/package*.json ./
+COPY server/package.json ./
 COPY server/pnpm-lock.yaml ./
 RUN npm install pnpm@8 -g && pnpm install -P
 

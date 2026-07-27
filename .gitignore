@@ -7,6 +7,9 @@ version.json
 server/data/resources
 server/data/log
 server/data/config.js
+server/data/*.sqlite
+server/data/*.sqlite-shm
+server/data/*.sqlite-wal
 
 # local env files
 .env.local

@@ -55,16 +55,6 @@ const baseConfig = {
   key: 'abcdefgh', // 鉴权密钥。用于需要鉴权才能访问的接口
 };
 
-// 数据库配置 (注意：除数据库连接池大小外，以下配置项提及的内容需在安装前准备好并填入)
-const databaseConfig = {
-  host: "127.0.0.1", // 数据库链接地址
-  port: "3306", // 数据库连接端口
-  database: "bing", // 数据库名
-  user: "bing", // 数据库用户名
-  password: "bing", // 数据库密码
-  connectionLimit: 100, // 数据库连接池大小
-};
-
 // 网站信息配置
 const infoConfig = {
   link: [
@@ -90,13 +80,12 @@ const infoConfig = {
 
 module.exports = {
   baseConfig,
-  databaseConfig,
   infoConfig,
 };
 
 ```
 
-(2)映射目录: 本地目录( `data` ) > 容器目录( `/usr/src/app/data` )
+(2)映射目录: 本地目录( `data` ) > 容器目录( `/usr/src/app/data` )。图片和内置 SQLite 数据库都会保存在该目录，请做好持久化和备份。
 
 (3)映射端口: 本地端口(如80) > 容器端口(默认为3000)
 

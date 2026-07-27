@@ -22,8 +22,8 @@ const getInfo = (req, res) => {
 	if (id <= 0) {
 		id = 1;
 	}
-	const SQL_GET_INFO = `SELECT * FROM ${databaseTable} WHERE id=${id}`;
-	const info = operateDb(SQL_GET_INFO, null);
+	const SQL_GET_INFO = `SELECT * FROM ${databaseTable} WHERE id = ?`;
+	const info = operateDb(SQL_GET_INFO, [id]);
 	Promise.all([info])
 		.then((values) => {
 			res.send({
