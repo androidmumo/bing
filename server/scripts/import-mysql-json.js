@@ -2,22 +2,14 @@
 const fs = require("fs");
 const path = require("path");
 
-const { installConfig } = require("../config/config");
-const { install } = require("../model/install");
-const { upgrade } = require("../model/upgrade");
-const { operateDb } = require("../model/conn");
+const { importRecords } = require("./import-records");
 
 const inputPath = process.argv[2];
 
 if (!inputPath) {
-  console.error("用法: pnpm import:mysql <bing-export.json>");
+  console.error("用法: pnpm import:mysql-json <bing-export.json>");
   process.exit(1);
 }
-
-const normalizeJson = (value) => {
-  if (value == null) return null;
-  return typeof value === "string" ? value : JSON.stringify(value);
-};
 
 const main = async () => {
   const content = fs.readFileSync(path.resolve(inputPath), "utf8");
@@ -28,36 +20,8 @@ const main = async () => {
     throw new Error("导入文件必须是 JSON 数组，或包含 rows/data 数组");
   }
 
-  await install();
-  await upgrade();
-
-  const sql = `
-    INSERT INTO ${installConfig.databaseTable}
-      (id, title, copyright, date, base64, url, color, timestamp)
-    VALUES (?, ?, ?, ?, ?, ?, ?, COALESCE(?, CURRENT_TIMESTAMP))
-    ON CONFLICT(date) DO UPDATE SET
-      title = excluded.title,
-      copyright = excluded.copyright,
-      base64 = excluded.base64,
-      url = excluded.url,
-      color = excluded.color,
-      timestamp = excluded.timestamp;
-  `;
-
-  for (const row of rows) {
-    await operateDb(sql, [
-      row.id ?? null,
-      row.title ?? null,
-      row.copyright ?? null,
-      row.date,
-      row.base64 ?? null,
-      normalizeJson(row.url),
-      normalizeJson(row.color),
-      row.timestamp ?? null,
-    ]);
-  }
-
-  console.log(`导入完成：${rows.length} 条记录`);
+  const count = await importRecords(rows);
+  console.log(`导入完成：${count} 条记录`);
 };
 
 main().catch((err) => {

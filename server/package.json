@@ -9,7 +9,9 @@
   "scripts": {
     "serve": "node index.js",
     "dev": "node index.js dev",
-    "import:mysql": "node scripts/import-mysql-json.js",
+    "import:mysql": "node scripts/import-mysql-sql.js",
+    "import:mysql-sql": "node scripts/import-mysql-sql.js",
+    "import:mysql-json": "node scripts/import-mysql-json.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

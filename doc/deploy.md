@@ -105,6 +105,8 @@ module.exports = {
 
 挂载部分选择【本机目录】，本机目录填写刚刚新建的目录 `/opt/bing` ，权限为读写，容器目录请填写 `/usr/src/app/data` 。图片和 SQLite 数据库文件 `bing.sqlite` 都会持久化在此目录。
 
+如果需要迁移旧 MySQL 数据，将 `mysqldump` 导出的 `.sql` 文件放到 `/opt/bing` 后再启动容器即可。容器会先按文件名顺序导入 SQL，成功后删除对应文件，然后才对外提供服务。导入失败时 SQL 文件会保留且容器启动失败，可查看日志修复后重启。请提前在其他位置保留 SQL 备份。
+
 ![createDocker2.png](./deploy/createDocker2.png)
 
 重启规则和性能限制依据个人需要配置，建议选择【失败后重启】。

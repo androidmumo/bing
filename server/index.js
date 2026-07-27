@@ -18,6 +18,7 @@ const { eventBus } = require("./model/eventBus"); // 事件总线
 const { startUpdateJob } = require("./model/cron"); // 定时任务
 const { install } = require("./model/install"); // 初始化数据库
 const { upgrade } = require("./model/upgrade"); // 程序升级
+const { importSqlFilesOnStartup } = require("./model/importOnStartup");
 
 // 原生模块
 const childProcess = require("child_process");
@@ -47,8 +48,6 @@ const deleteBingByChildProcess = function () {
   childProcess.fork("./model/delete.js");
 };
 
-// 定时任务
-startUpdateJob();
 eventBus.on("to-update", () => {
   updateBingByChildProcess();
   deleteBingByChildProcess();
@@ -62,11 +61,15 @@ const main = async () => {
   // 程序升级
   await upgrade();
 
+  // 导入持久化目录中的 MySQL SQL 文件
+  await importSqlFilesOnStartup();
+
+  // 数据初始化完成后再启动定时任务
+  startUpdateJob();
+
   // 首次运行时更新图片
   updateBingByChildProcess();
 }
-
-main();
 // ------ 逻辑代码 end------
 
 // ------ 接口 start------
@@ -126,7 +129,14 @@ app.get(`/${GET_INFO}`, getInfo); // 获取图片详情
 app.get(`/${GET_WEBINFO}`, getWebInfo); // 获取网站信息
 // ------ 接口 end------
 
-// 开始监听
-app.listen(port, () => {
-  logger.info(`app listening at http://localhost:${port}`);
-});
+// 数据库初始化和 SQL 导入完成后再开始监听
+main()
+  .then(() => {
+    app.listen(port, () => {
+      logger.info(`app listening at http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    logger.error("服务启动失败 " + (err.data?.message || err.message || err));
+    process.exit(1);
+  });

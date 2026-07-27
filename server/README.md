@@ -134,13 +134,32 @@ npm run dev
 
 ### 从旧 MySQL 迁移（可选）
 
-先将旧 `bing` 表导出为 JSON 数组，再在服务端目录执行：
+推荐使用 `mysqldump` 导出数据：
 
 ```
-pnpm import:mysql /path/to/bing-export.json
+mysqldump --no-create-info --complete-insert \
+  -h <host> -u <user> -p <database> bing > bing.sql
 ```
 
-每条记录可包含 `id`、`title`、`copyright`、`date`、`base64`、`url`、`color` 和 `timestamp`。导入会保留原 ID；重复日期会更新已有记录。迁移完成后，运行服务不再需要旧 MySQL。
+然后在服务端目录直接导入 SQL 文件：
+
+```
+pnpm import:mysql /path/to/bing.sql
+```
+
+导入器支持 mysqldump 的批量 `INSERT`、完整字段列表、MySQL 字符串转义以及旧版七字段表结构；建表、锁表和其他 MySQL 专用语句会被忽略。导入会保留原 ID，重复日期会更新已有记录。
+
+Docker 部署无需进入容器执行命令。将 SQL 文件放入映射到 `/usr/src/app/data` 的宿主机目录，然后启动或重启容器即可。启动时会按文件名顺序导入该目录下所有 `.sql` 文件；每个文件事务提交成功后会自动删除。导入失败时文件会保留，容器启动也会失败，以便修复后重试。
+
+建议在放入持久化目录前保留一份 SQL 备份，因为成功导入的文件会被删除。
+
+原 JSON 导入方式仍然可用：
+
+```
+pnpm import:mysql-json /path/to/bing-export.json
+```
+
+迁移完成后，运行服务不再需要旧 MySQL。
 
 
 
