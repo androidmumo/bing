@@ -13,9 +13,12 @@ notice:
 index:
   today: Today
   date: Date
+  keyword: Keyword
+  searchTitle: Find images
   searchPlaceholder: Search title or copyright
   search: Search
   clear: Clear
+  close: Close
 
 detail:
   greyscale: Greyscale

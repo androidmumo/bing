@@ -13,9 +13,12 @@ notice:
 index:
   today: 今天
   date: 日期
+  keyword: 关键词
+  searchTitle: 查找图片
   searchPlaceholder: 搜索标题或版权信息
   search: 搜索
   clear: 清空
+  close: 关闭
 
 detail:
   greyscale: 灰度

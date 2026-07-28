@@ -12,6 +12,8 @@ declare module '@vue/runtime-core' {
     'IBxl:bing': typeof import('~icons/bxl/bing')['default']
     'ICarbon:asleep': typeof import('~icons/carbon/asleep')['default']
     'ICarbon:awake': typeof import('~icons/carbon/awake')['default']
+    'ICarbon:close': typeof import('~icons/carbon/close')['default']
+    'ICarbon:search': typeof import('~icons/carbon/search')['default']
     'IIon:iosArrowBack': typeof import('~icons/ion/ios-arrow-back')['default']
     'IIon:languageOutline': typeof import('~icons/ion/language-outline')['default']
     ImageList: typeof import('./../../src/components/image-list.vue')['default']

@@ -103,6 +103,7 @@ const clickLang = () => {
 		</div>
 		<div class="header-center"></div>
 		<div class="header-right">
+			<imageSearch v-if="!headerStore.needBack" />
 			<div
 				:class="{
 					'lang-btn': true,
