@@ -12,6 +12,10 @@ notice:
 
 index:
   today: 今天
+  date: 日期
+  searchPlaceholder: 搜索标题或版权信息
+  search: 搜索
+  clear: 清空
 
 detail:
   greyscale: 灰度

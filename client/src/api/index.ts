@@ -3,6 +3,8 @@ import http from '../utils/http'
 const getList = (params: {
 	pageSize: number // 每页数据条数
 	currentPage: number // 第几页
+	date?: string // 精确日期 YYYY-MM-DD
+	keyword?: string // 标题或版权关键词
 }) => {
 	return http({
 		method: 'get',
@@ -10,6 +12,8 @@ const getList = (params: {
 		params: {
 			pageSize: params.pageSize,
 			currentPage: params.currentPage,
+			date: params.date || undefined,
+			keyword: params.keyword || undefined,
 		},
 	}).then((response) => response.data)
 }

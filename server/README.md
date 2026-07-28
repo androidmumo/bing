@@ -191,15 +191,17 @@ http://localhost:3000/api/getImage
 
 参数(query):
 
-| Key         | Value  | 说明         |
-| ----------- | ------ | ------------ |
-| pageSize    | Number | 每页数据条数 |
-| currentPage | Number | 目标页数     |
+| Key         | Value  | 说明                                  |
+| ----------- | ------ | ------------------------------------- |
+| pageSize    | Number | 每页数据条数，最大 100                |
+| currentPage | Number | 目标页数                              |
+| date        | String | 可选，精确日期，格式为 `YYYY-MM-DD`   |
+| keyword     | String | 可选，搜索标题或版权信息，最多 100 字 |
 
 请求示例:
 
 ```
-http://localhost:3000/api/getList?pageSize=3&currentPage=2
+http://localhost:3000/api/getList?pageSize=3&currentPage=1&date=2021-04-15&keyword=加拿大
 ```
 
 返回示例:
@@ -207,6 +209,7 @@ http://localhost:3000/api/getList?pageSize=3&currentPage=2
 ```javascript
 {
     "totle": 10,
+    "total": 10,
     "list": [
         {
             "id": 7,

@@ -12,6 +12,10 @@ notice:
 
 index:
   today: Today
+  date: Date
+  searchPlaceholder: Search title or copyright
+  search: Search
+  clear: Clear
 
 detail:
   greyscale: Greyscale

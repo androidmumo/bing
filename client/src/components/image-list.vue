@@ -20,6 +20,14 @@ const state = reactive({
 
 const imageList = ref()
 
+watch(
+	() => imageStore.filterVersion,
+	() => {
+		state.loadMap = {}
+		state.loadCount = 0
+	}
+)
+
 // 节流
 // const reduceFn = (fn: Function, delay = 100) => {
 // 	let allowFlag = true

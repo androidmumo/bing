@@ -52,6 +52,7 @@ const setScrollTop = () => {
 	<pcHeader />
 	<div ref="pcContent" class="pc-index pc-content">
 		<div class="index-content">
+			<imageSearch />
 			<imageList
 				:show-info-text="false"
 				:auto-load="3"

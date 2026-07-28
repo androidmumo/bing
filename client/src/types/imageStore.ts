@@ -22,6 +22,7 @@ type Data = {
 		}
 	}[]
 	totle: number
+	total?: number
 }
 
 export default Data

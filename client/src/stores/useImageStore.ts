@@ -4,6 +4,12 @@ import { useLoadMore } from 'vue-request'
 import Data from '../types/imageStore'
 
 export default defineStore('useImageStore', () => {
+	const filters = reactive({
+		date: '',
+		keyword: '',
+	})
+	const filterVersion = ref(0)
+
 	// 根据路由决定每页加载几个
 	const route = useRoute()
 	const agent = <string>route.meta.agent || ''
@@ -25,6 +31,8 @@ export default defineStore('useImageStore', () => {
 		const params = {
 			pageSize,
 			currentPage: 1,
+			date: filters.date,
+			keyword: filters.keyword,
 		}
 		if (dataList?.length !== undefined) {
 			params.currentPage = Math.floor(dataList.length / params.pageSize) + 1
@@ -41,13 +49,28 @@ export default defineStore('useImageStore', () => {
 
 	const noMore = computed(() => dataList.value.length === data.value?.totle)
 
+	const search = (nextFilters: { date?: string; keyword?: string }) => {
+		filters.date = nextFilters.date || ''
+		filters.keyword = nextFilters.keyword?.trim() || ''
+		filterVersion.value++
+		refresh()
+	}
+
+	const clearSearch = () => {
+		search({ date: '', keyword: '' })
+	}
+
 	return {
 		data,
 		dataList,
 		loadingMore,
 		refreshing,
 		noMore,
+		filters,
+		filterVersion,
 		loadMore,
 		refresh,
+		search,
+		clearSearch,
 	}
 })
