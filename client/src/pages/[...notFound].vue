@@ -55,6 +55,11 @@ const back = () => router.push('/')
 		0 2px 4px -1px rgba(var(--tw-shadow-color), 0.06);
 	box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, var(--tw-shadow);
 }
+
+html.dark .h-screen {
+	color: #e5e7eb;
+	background-color: #121212;
+}
 </style>
 
 <route lang="yaml">

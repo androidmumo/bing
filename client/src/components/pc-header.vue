@@ -235,6 +235,11 @@ $left-right-margin: 30px; // 左右边距
 }
 
 html.dark .pc-header {
-	background-color: rgba(0, 0, 0, 0.72);
+	background-color: rgba(18, 18, 19, 0.82);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+	.lang-btn:hover {
+		background-color: rgba(133, 138, 227, 0.16);
+	}
 }
 </style>

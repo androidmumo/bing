@@ -81,6 +81,20 @@ html.dark .prose pre {
 	background: #495057;
 }
 
+html.dark .prose {
+	min-height: 100%;
+	color: #e5e7eb;
+	background-color: #121212;
+}
+
+html.dark .prose :where(h1, h2, h3, h4, strong) {
+	color: #e5e7eb;
+}
+
+html.dark .prose :where(p, li, blockquote) {
+	color: #a7a7ae;
+}
+
 .token.comment {
 	font-style: normal;
 	font-size: 0.5rem;
