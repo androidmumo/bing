@@ -86,7 +86,7 @@ state.compileTime = dayjs(versionJSON.compileTime).format('YYYY-MM-DD HH:mm:ss')
 
 html.dark {
 	.h5-footer {
-		background-color: #f5f5f511;
+		background-color: #191919;
 	}
 }
 </style>

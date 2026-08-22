@@ -14,7 +14,9 @@ body,
 	transition-duration: 0.3s;
 }
 
-html.dark {
+html.dark,
+html.dark body,
+html.dark #app {
 	color: #e5e7eb;
 	background-color: #121212;
 }
