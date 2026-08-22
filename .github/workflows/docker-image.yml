@@ -32,7 +32,13 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: androidmumo/bing
-      
+          # 发版策略:正式版(semver 无预发后缀)才推 latest;alpha/beta 只推版本 tag
+          flavor: |
+            latest=auto
+          tags: |
+            type=semver,pattern={{raw}}
+            type=raw,value=latest,enable=${{ !contains(github.event.release.tag_name, '-') }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
