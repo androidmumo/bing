@@ -14,6 +14,9 @@ const { operateDb } = require("./conn"); // 数据库模块
 const { delDirectory, rmEmptyDir } = require("./fileOperations"); // 文件操作模块
 const { eventBus } = require("./eventBus"); // 事件总线
 
+// 原生模块
+const fs = require("fs");
+
 // 第三方模块
 const dayjs = require("dayjs");
 
@@ -27,21 +30,28 @@ eventBus.on("on-error", (error) => {
 const deleteExpired = async () => {
 	if (surviveDays <= 0) return; // 小于等于0则不清理
 	const expiredDate = dayjs().subtract(surviveDays, 'day');
-	const expiredDir = `${dir}/${expiredDate.format("YYYY")}/${expiredDate.format(
-		"MM"
-	)}/${expiredDate.format("DD")}`;
 
-	// 删除图片
-	delDirectory(expiredDir);
+	// 兜底:清理所有超期日期的图片目录(此前仅删"恰好超期那天",历史遗留的更早目录会漏删)
+	for (let offset = 0; ; offset++) {
+		const d = expiredDate.subtract(offset, 'day');
+		const expiredDir = `${dir}/${d.format("YYYY")}/${d.format("MM")}/${d.format("DD")}`;
+		if (!fs.existsSync(expiredDir)) {
+			// 连续 400 天都不存在才停止(避免历史空洞导致提前退出)
+			if (offset > 400) break;
+			continue;
+		}
+		delDirectory(expiredDir);
+	}
 
 	// 删除空目录
 	rmEmptyDir(dir);
 
-	// 清理数据库数据
-	const SQL_DELETE = `DELETE FROM ${databaseTable} WHERE date = ?;`
+	// 清理数据库数据(一次性删除所有超期记录,防止进程中断导致僵尸记录累积)
+	const SQL_DELETE = `DELETE FROM ${databaseTable} WHERE date < ?;`
 	await operateDb(SQL_DELETE, [expiredDate.format("YYYY-MM-DD")]).then((result) => {
 		logger.info("数据库-(清理)写入成功");
 	});
+	logger.info("清理成功 截止日期: " + expiredDate.format("YYYY-MM-DD"));
 
 	// 重试逻辑
 	if (errorList.length === 0) {

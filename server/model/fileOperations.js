@@ -51,22 +51,36 @@ const createDirectorySync = function (dir, recursive) {
 
 /**
  * 删除指定路径下的所有空文件夹
- * @param {*} path 
+ * @param {*} path
  */
-function rmEmptyDir(path, level=0) {
-  const files = fs.readdirSync(path);
-  if (files.length > 0) {
-      let tempFile = 0;
-      files.forEach(file => {
-          tempFile++;
-          rmEmptyDir(`${path}/${file}`, 1);
-      });
-      if (tempFile === files.length && level !== 0) {
-          fs.rmdirSync(path);
-      }
+function rmEmptyDir(path, level = 0) {
+  let files = [];
+  try {
+    files = fs.readdirSync(path);
+  } catch (e) {
+    return; // 目标不存在或不是目录(如图片文件),直接跳过
   }
-  else {
-      level !==0 && fs.rmdirSync(path);
+  if (files.length > 0) {
+    let tempFile = 0;
+    files.forEach((file) => {
+      try {
+        if (fs.statSync(`${path}/${file}`).isDirectory()) {
+          rmEmptyDir(`${path}/${file}`, 1);
+          tempFile++;
+        }
+      } catch (e) {
+        /* 单个条目异常不影响整体 */
+      }
+    });
+    if (tempFile === files.length && level !== 0) {
+      try {
+        fs.rmdirSync(path);
+      } catch (e) {
+        /* 目录非空(含文件)时忽略 */
+      }
+    }
+  } else {
+    level !== 0 && fs.rmdirSync(path);
   }
 }
 
