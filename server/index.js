@@ -10,7 +10,7 @@ const { baseConfig } = require("./data/config");
 const { port, DelayTime, key } = baseConfig;
 const { dir } = installConfig;
 const { static } = apiBaseConfig;
-const { UPDATE, DELETE, GET_IMAGE, GET_LIST, GET_INFO, GET_WEBINFO } = apiConfig;
+const { UPDATE, DELETE, GET_IMAGE, GET_LIST, GET_INFO, GET_RANDOM, GET_WEBINFO } = apiConfig;
 
 // 导入模块
 const { logger } = require("./model/log4js"); // 日志模块
