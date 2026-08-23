@@ -31,6 +31,7 @@ const cors = require("cors");
 // 导入api
 const { getList } = require("./api/getList");
 const { getInfo } = require("./api/getInfo");
+const { getRandom } = require("./api/getRandom");
 const { getWebInfo } = require("./api/getWebInfo");
 
 // 使用express框架
@@ -126,6 +127,7 @@ app.get('/', (req, res) => {
 app.get(`/${GET_IMAGE}`, getImage); // 获取当天图片
 app.get(`/${GET_LIST}`, getList); // 获取图片列表
 app.get(`/${GET_INFO}`, getInfo); // 获取图片详情
+app.get(`/${GET_RANDOM}`, getRandom); // 获取随机图片列表
 app.get(`/${GET_WEBINFO}`, getWebInfo); // 获取网站信息
 // ------ 接口 end------
 

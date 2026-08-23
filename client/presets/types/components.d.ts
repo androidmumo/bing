@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     'ICarbon:awake': typeof import('~icons/carbon/awake')['default']
     'ICarbon:close': typeof import('~icons/carbon/close')['default']
     'ICarbon:search': typeof import('~icons/carbon/search')['default']
+    'IIon:dice': typeof import('~icons/ion/dice')['default']
     'IIon:iosArrowBack': typeof import('~icons/ion/ios-arrow-back')['default']
     'IIon:languageOutline': typeof import('~icons/ion/language-outline')['default']
     ImageList: typeof import('./../../src/components/image-list.vue')['default']

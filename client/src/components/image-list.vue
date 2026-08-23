@@ -28,6 +28,15 @@ watch(
 	}
 )
 
+// 随机模式切换时重置图片加载状态
+watch(
+	() => imageStore.randomVersion,
+	() => {
+		state.loadMap = {}
+		state.loadCount = 0
+	}
+)
+
 // 节流
 // const reduceFn = (fn: Function, delay = 100) => {
 // 	let allowFlag = true
@@ -125,13 +134,19 @@ const clickImage = (item: any) => {
 <template>
 	<div ref="imageList" class="image-list">
 		<div
-			v-if="props.showInfoText && imageStore.refreshing"
+			v-if="props.showInfoText && imageStore.refreshing && !imageStore.isRandomMode"
 			class="info-text is-refreshing"
 		>
 			{{ t('notice.refreshing') }}
 		</div>
 		<div
-			v-for="(item, index) in imageStore.dataList"
+			v-if="props.showInfoText && imageStore.randomLoading"
+			class="info-text is-refreshing"
+		>
+			{{ t('notice.refreshing') }}
+		</div>
+		<div
+			v-for="(item, index) in (imageStore.isRandomMode ? imageStore.randomList : imageStore.dataList)"
 			:key="item?.id"
 			class="image-item"
 			@click="clickImage(item)"
@@ -147,16 +162,23 @@ const clickImage = (item: any) => {
 			<slot name="content" :data="item"></slot>
 		</div>
 		<div
-			v-if="props.showInfoText && imageStore.loadingMore"
+			v-if="props.showInfoText && imageStore.loadingMore && !imageStore.isRandomMode"
 			class="info-text is-loading-more"
 		>
 			{{ t('notice.loadingMore') }}
 		</div>
 		<div
-			v-if="props.showInfoText && imageStore.noMore"
+			v-if="props.showInfoText && imageStore.noMore && !imageStore.isRandomMode"
 			class="info-text is-no-more"
 		>
 			{{ t('notice.noMore') }}
+		</div>
+		<div
+			v-if="props.showInfoText && imageStore.isRandomMode && !imageStore.randomLoading && imageStore.randomList.length > 0"
+			class="info-text is-random-again"
+			@click="imageStore.refreshRandom()"
+		>
+			{{ t('notice.randomAgain') }}
 		</div>
 	</div>
 </template>

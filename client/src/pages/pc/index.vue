@@ -78,16 +78,29 @@ const setScrollTop = () => {
 				</template>
 			</imageList>
 			<div
-				v-if="!imageStore.loadingMore && !imageStore.noMore"
+				v-if="imageStore.isRandomMode && !imageStore.randomLoading"
+				class="load-more-btn"
+				@click="imageStore.refreshRandom()"
+			>
+				{{ t('notice.randomAgain') }}
+			</div>
+			<div
+				v-if="imageStore.randomLoading"
+				class="is-loading-more-text"
+			>
+				{{ t('notice.loadingMore') }}
+			</div>
+			<div
+				v-if="!imageStore.isRandomMode && !imageStore.loadingMore && !imageStore.noMore"
 				class="load-more-btn"
 				@click="imageStore.loadMore"
 			>
 				{{ t('notice.more') }}
 			</div>
-			<div v-if="imageStore.loadingMore" class="is-loading-more-text">
+			<div v-if="!imageStore.isRandomMode && imageStore.loadingMore" class="is-loading-more-text">
 				{{ t('notice.loadingMore') }}
 			</div>
-			<div v-if="imageStore.noMore" class="is-no-more-text">
+			<div v-if="!imageStore.isRandomMode && imageStore.noMore" class="is-no-more-text">
 				{{ t('notice.noMore') }}
 			</div>
 		</div>

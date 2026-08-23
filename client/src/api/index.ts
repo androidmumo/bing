@@ -28,6 +28,17 @@ const getInfo = (params: { id: number }) => {
 	}).then((response) => response.data.info)
 }
 
+// 获取随机图片列表
+const getRandom = (params: { count?: number }) => {
+	return http({
+		method: 'get',
+		url: 'api/getRandom',
+		params: {
+			count: params?.count,
+		},
+	}).then((response) => response.data)
+}
+
 // 获取网站信息
 const getWebInfo = () => {
 	return http({
@@ -36,4 +47,4 @@ const getWebInfo = () => {
 	}).then((response) => response.data)
 }
 
-export { getList, getInfo, getWebInfo }
+export { getList, getInfo, getRandom, getWebInfo }
