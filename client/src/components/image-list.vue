@@ -175,10 +175,10 @@ const clickImage = (item: any) => {
 		</div>
 		<div
 			v-if="props.showInfoText && imageStore.isRandomMode && !imageStore.randomLoading && imageStore.randomList.length > 0"
-			class="info-text is-random-again"
-			@click="imageStore.refreshRandom()"
+			class="info-text is-random-home"
+			@click="imageStore.exitRandomMode()"
 		>
-			{{ t('notice.randomAgain') }}
+			{{ t('notice.randomHome') }}
 		</div>
 	</div>
 </template>

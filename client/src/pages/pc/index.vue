@@ -79,10 +79,10 @@ const setScrollTop = () => {
 			</imageList>
 			<div
 				v-if="imageStore.isRandomMode && !imageStore.randomLoading"
-				class="load-more-btn"
-				@click="imageStore.refreshRandom()"
+				class="info-text is-random-home"
+				@click="imageStore.exitRandomMode()"
 			>
-				{{ t('notice.randomAgain') }}
+				{{ t('notice.randomHome') }}
 			</div>
 			<div
 				v-if="imageStore.randomLoading"

@@ -96,8 +96,8 @@ const clickLang = () => {
 const imageStore = useImageStore()
 const clickRandom = () => {
 	if (imageStore.isRandomMode) {
-		// 再点一次退出随机模式,恢复普通列表
-		imageStore.exitRandomMode()
+		// 随机态再点骰子:再摇一批(#37 Codex方案)
+		imageStore.refreshRandom()
 	} else {
 		imageStore.enterRandomMode()
 	}

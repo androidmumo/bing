@@ -104,6 +104,19 @@
 			color: #999999;
 		}
 
+		.is-random-home {
+			margin: 10px 0;
+			text-align: center;
+			font-size: 12px;
+			line-height: 39px;
+			color: #999999;
+			cursor: pointer;
+
+			&:hover {
+				color: #666666;
+			}
+		}
+
 		.is-no-more-text {
 			margin: 10px 0;
 			text-align: center;
