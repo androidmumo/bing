@@ -24,7 +24,12 @@ const initDarkStatus = () => {
 
 // back
 const back = () => {
-	router.back()
+	// 有站内来路(含F5后,history.state.back保留)则原路返回;无来路(直接打开链接)回本端首页
+	if (router.options.history.state?.back) {
+		router.back()
+	} else {
+		router.replace('/pc')
+	}
 }
 
 // go home

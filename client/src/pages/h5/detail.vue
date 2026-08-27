@@ -36,7 +36,6 @@ const loadData = () => {
 			state.data = res
 			state.loading = false
 		})
-		headerStore.setBackBtnStatus(false)
 	}
 }
 
