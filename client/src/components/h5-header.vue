@@ -128,7 +128,6 @@ const clickRandom = () => {
 				:title="t('notice.random')"
 				@click="clickRandom"
 			>
-				<span class="text">{{ t('notice.random') }}</span>
 				<i-ion:dice-outline class="icon" />
 			</div>
 			<div
@@ -136,10 +135,10 @@ const clickRandom = () => {
 					'lang-btn': true,
 					'lang-click': state.langAnimation,
 				}"
+				:title="languageName"
 				@click="clickLang"
 			>
-				<span class="text">{{ language }}</span>
-				<i-ion:language-outline class="icon" />
+				<span class="lang-badge">{{ language }}</span>
 			</div>
 			<div class="dark-btn">
 				<i-carbon:asleep
@@ -235,17 +234,12 @@ $left-right-margin: 16px; // 左右边距
 		align-items: center;
 		margin-right: $left-right-margin;
 		.random-btn {
-			margin-right: calc(20px + 1.2em);
+			margin-right: 12px;
 			display: flex;
 			align-items: center;
 			cursor: pointer;
 			transition: transform 0.2s cubic-bezier(0.08, 0.63, 0.48, 0.95);
 			transform: scale(1);
-			.text {
-				font-size: 12px;
-				zoom: 50%;
-				margin-right: 6px;
-			}
 			.icon {
 				font-size: 16px;
 			}
@@ -257,16 +251,18 @@ $left-right-margin: 16px; // 左右边距
 			color: #858ae3;
 		}
 		.lang-btn {
-			margin-right: calc(20px + 1.2em);
+			margin-right: calc(12px + 1.2em);
 			display: flex;
 			align-items: center;
 			cursor: pointer;
 			transition: transform 0.2s cubic-bezier(0.08, 0.63, 0.48, 0.95);
 			transform: scale(1);
-			.text {
-				font-size: 12px;
-				zoom: 50%;
-				margin-right: 6px;
+			.lang-badge {
+				font-size: 15px;
+				font-weight: 600;
+				line-height: 1;
+				width: 1.2em;
+				text-align: center;
 			}
 		}
 		.lang-click {

@@ -4,7 +4,9 @@ export default () => {
 		locale.value = locale.value === 'zh-CN' ? 'en' : 'zh-CN'
 	}
 
-	const language = computed(() => (locale.value === 'zh-CN' ? '中文' : 'En'))
+	// 徽章用短字形(中/En);title 提示用全称
+	const language = computed(() => (locale.value === 'zh-CN' ? '中' : 'En'))
+	const languageName = computed(() => (locale.value === 'zh-CN' ? '中文' : 'English'))
 
-	return { t, language, toggleLocale }
+	return { t, language, languageName, toggleLocale }
 }
