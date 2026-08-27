@@ -124,7 +124,7 @@ const clickRandom = () => {
 				@click="clickRandom"
 			>
 				<span class="text">{{ t('notice.random') }}</span>
-				<i-ion:dice class="icon" />
+				<i-ion:dice-outline class="icon" />
 			</div>
 			<div
 				:class="{
