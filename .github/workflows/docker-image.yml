@@ -46,3 +46,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          # 版本号(Release tag)注入镜像构建,前端页脚展示
+          build-args: |
+            APP_VERSION=${{ github.event.release.tag_name }}

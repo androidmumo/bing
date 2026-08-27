@@ -34,3 +34,4 @@ detail:
 
 footer:
   buildTime: build time
+  version: version

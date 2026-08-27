@@ -147,7 +147,7 @@ const clickImage = (item: any) => {
 		</div>
 		<div
 			v-for="(item, index) in (imageStore.isRandomMode ? imageStore.randomList : imageStore.dataList)"
-			:key="item?.id"
+			:key="`${imageStore.randomVersion}-${item?.id}`"
 			class="image-item"
 			@click="clickImage(item)"
 		>

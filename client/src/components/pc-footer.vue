@@ -7,9 +7,11 @@ const webInfoStore = useWebInfoStore()
 
 const state = reactive({
 	compileTime: '',
+	version: '',
 })
 
 state.compileTime = dayjs(versionJSON.compileTime).format('YYYY-MM-DD HH:mm:ss')
+state.version = versionJSON.version || 'dev'
 </script>
 
 <template>
@@ -43,7 +45,9 @@ state.compileTime = dayjs(versionJSON.compileTime).format('YYYY-MM-DD HH:mm:ss')
 			v-html="webInfoStore.webInfo.copyright"
 		></div>
 		<div class="build-time">
-			{{ `${t('footer.buildTime')}: ${state.compileTime}` }}
+			{{
+				`${t('footer.buildTime')}: ${state.compileTime} · ${t('footer.version')}: ${state.version}`
+			}}
 		</div>
 		<div
 			v-if="webInfoStore.webInfo.htmlSlot?.afterFooter"

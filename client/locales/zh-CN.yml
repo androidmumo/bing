@@ -34,3 +34,4 @@ detail:
 
 footer:
   buildTime: 编译时间
+  version: 版本

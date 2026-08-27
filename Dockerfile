@@ -1,12 +1,16 @@
 FROM node:24-alpine AS builder
 
+# 版本号(Release tag)注入前端构建,显示在页脚
+ARG APP_VERSION=dev
+ENV APP_VERSION=$APP_VERSION
+
 WORKDIR /usr/src/app
 
 COPY client/package*.json ./
 COPY client/pnpm-lock.yaml ./
 RUN npm install pnpm@8 -g && pnpm install
 
-COPY client .
+COPY client ./
 RUN pnpm build
 
 FROM node:24-alpine
